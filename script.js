@@ -8,7 +8,7 @@
 // For local dev, use .env file or APP_CONFIG
 const SPOTIFY_SHOW_ID = window.APP_CONFIG?.SPOTIFY_SHOW_ID || '3nwEyCN9eUwP7QKneoYYiJ';
 const APPLE_PODCAST_ID = window.APP_CONFIG?.APPLE_PODCAST_ID || '1849280234';
-const API_ENDPOINT = 'https://6fh6qddx41.execute-api.us-east-1.amazonaws.com';
+const API_ENDPOINT = 'https://6fh6qddx41.execute-api.us-east-1.amazonaws.com/prod/spotify-proxy/api/episodes';
 
 let spotifyToken = null;
 
