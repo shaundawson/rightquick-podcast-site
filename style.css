@@ -32,6 +32,15 @@ body {
     --grid-gap: 24px;
     --container-padding: 120px;
 
+    /* Named Color Palette */
+    --color-morning-snow: #F5F4ED;
+    --color-amazon-mist: #ECECDC;
+    --color-agua-mist: #A0C9CB;
+    --color-black-kite: #351E1C;
+    --color-garnet: #733635;
+    --color-toxic-orange: #FF6037;
+
+    /* Semantic Aliases */
     --color-primary: #351E1C;
     --color-accent: #FF6037;
     --color-navbar: #A0C9CB;
@@ -40,9 +49,7 @@ body {
     --color-border: #ECECDC;
     --color-text: #351E1C;
     --color-text-secondary: #B8B8B8;
-    --color-garnet: #733635;
     --color-offwhite: #F5F5F5;
-
 
     --font-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
     --font-weight-regular: 400;
@@ -117,7 +124,7 @@ a {
 }
 
 a:hover {
-    color: var(--color-navbar);
+    color: var(--color-agua-mist);
 }
 
 /* ============================================
@@ -146,10 +153,9 @@ a:hover {
 
 .section-heading em {
     font-style: normal;
-    color: var(--color-accent)
+    color: var(--color-accent);
 }
 
-/* short colored segment under the text */
 .section-heading::after {
     content: "";
     position: absolute;
@@ -161,16 +167,17 @@ a:hover {
 }
 
 /* ============================================
-   NAVBAR - Sticky 
+   NAVBAR - DESKTOP (Top Sticky)
    ============================================ */
 
 .navbar {
-    background: var(--color-navbar);
+    background: var(--color-agua-mist);
     border-bottom: 1px solid var(--color-border);
-    padding: var(--space-md) var(--container-padding);
+    padding: 12px var(--container-padding);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
 }
 
 .navbar-container {
@@ -183,45 +190,41 @@ a:hover {
 
 .navbar-brand {
     grid-column: 1 / 3;
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-black-kite);
     display: flex;
     align-items: center;
-    gap: var(--space-8);
     cursor: pointer;
-    transition: opacity var(--duration-fast) var(--ease-standard);
-}
-
-.navbar-brand i {
-    font-size: var(--font-size-xl);
-}
-
-.navbar-brand:focus-visible {
-    outline: var(--focus-outline);
+    transition: color var(--transition-fast);
 }
 
 .navbar-brand:hover {
-    opacity: 0.8;
     color: var(--color-accent);
 }
 
 .navbar-nav {
     grid-column: 3 / 13;
     display: flex;
-    gap: var(--space-lg);
+    gap: 32px;
     list-style: none;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .nav-link {
-    font-size: 0.75rem;
-    font-weight: var(--font-weight-semibold);
+    font-size: 0.7rem;
+    font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-primary);
+    color: var(--color-black-kite);
     position: relative;
-    padding-bottom: 6px;
+    padding: 8px 0;
+    transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .nav-link:hover {
@@ -234,7 +237,7 @@ a:hover {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 1px;
     background: var(--color-accent);
     transition: width var(--transition-normal);
 }
@@ -277,7 +280,7 @@ a:hover {
     font-weight: var(--font-weight-regular);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-navbar);
+    color: var(--color-agua-mist);
     margin-bottom: var(--space-lg);
 }
 
@@ -302,7 +305,7 @@ a:hover {
     font-weight: var(--font-weight-regular);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--color-navbar);
+    color: var(--color-agua-mist);
     margin-bottom: var(--space-md);
 }
 
@@ -357,7 +360,7 @@ a:hover {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
-    gap: var(--grid-gap);
+    /* gap: var(--grid-gap); */
     align-items: center;
 }
 
@@ -368,7 +371,6 @@ a:hover {
 .cta-album-art {
     width: 100%;
     border-radius: var(--radius-md);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .cta-content {
@@ -378,7 +380,7 @@ a:hover {
 
 .cta-title {
     font-size: 1.75rem;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-xs);
 }
 
 .cta-subtitle {
@@ -394,7 +396,7 @@ a:hover {
 }
 
 .cta-btn {
-    background: var(--color-navbar);
+    background: var(--color-agua-mist);
     color: var(--color-primary);
     padding: 14px 20px;
     border: none;
@@ -418,7 +420,7 @@ a:hover {
 }
 
 /* ============================================
-   ABOUT SECTION - Team & Description (GRID‑SAFE)
+   ABOUT SECTION - Team & Description
    ============================================ */
 
 .about-section {
@@ -433,26 +435,21 @@ a:hover {
     padding-bottom: var(--space-2xl);
 }
 
-/* 12‑col grid, consistent with rest of layout */
 .about-grid {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
     gap: var(--grid-gap);
     align-items: flex-start;
-    padding-top: 1.7rem;
 }
 
-/* DESCRIPTION BLOCK – sits on left, wide like headline in ref */
 .about-description {
     grid-column: 1 / 4;
-    /* cols 1–6 */
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
 }
 
-/* Optional eyebrow similar to “OUR NEWS” (inline) */
 .about-eyebrow {
     font-size: 0.65rem;
     text-transform: uppercase;
@@ -460,12 +457,10 @@ a:hover {
     color: var(--color-text-secondary);
 }
 
-/* Remove the vertical orange rule to match the clean ref */
 .description-rule {
     display: none;
 }
 
-/* Headline and copy are all flush left */
 .description-content {
     text-align: left;
     margin-top: var(--space-2xl);
@@ -493,10 +488,8 @@ a:hover {
     margin: 0;
 }
 
-/* TEAM CARDS BLOCK  */
 .team-grid {
     grid-column: 5 / 13;
-    /* cols 7–12 */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--grid-gap);
@@ -511,6 +504,13 @@ a:hover {
     align-items: center;
     text-align: center;
     border: 1px solid var(--color-accent);
+    transition: all var(--transition-normal);
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-agua-mist);
 }
 
 .team-img {
@@ -519,14 +519,19 @@ a:hover {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: var(--space-md);
-    /* border: 2px solid var(--color-accent); */
+    filter: grayscale(100%);
+    transition: filter var(--transition-normal);
+}
+
+.team-card:hover .team-img {
+    filter: grayscale(0%);
 }
 
 .team-name {
     font-size: 1.25rem;
     font-weight: var(--font-weight-regular);
     margin-bottom: var(--space-xs);
-    color: var(--color-navbar);
+    color: var(--color-agua-mist);
 }
 
 .team-role {
@@ -547,23 +552,22 @@ a:hover {
     font-weight: 200;
 }
 
-/* Socials sit on baseline, still left aligned */
 .social-links {
     display: flex;
     gap: var(--space-md);
     margin-top: auto;
-    align-self: center
+    align-self: center;
 }
 
 .social-icon {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 1px solid var(--color-navbar);
+    border: 1px solid var(--color-agua-mist);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-navbar);
+    color: var(--color-agua-mist);
     font-size: 0.75rem;
     transition: all var(--transition-normal);
 }
@@ -573,36 +577,6 @@ a:hover {
     border-color: var(--color-accent);
     color: var(--color-accent);
 }
-
-/* RESPONSIVE – keep grid logic, collapse sensibly */
-@media (max-width: 960px) {
-    .about-grid {
-        grid-template-columns: repeat(6, 1fr);
-    }
-
-    .about-description {
-        grid-column: 1 / 5;
-        /* full width */
-        margin-bottom: var(--space-xl);
-    }
-
-    .team-grid {
-        grid-column: 5/ 13;
-        /* full width, still grid */
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    .about-section {
-        padding: var(--space-2xl) var(--space-md);
-    }
-
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 
 /* ============================================
    EPISODES SECTION - Wide Row Layout
@@ -626,7 +600,6 @@ a:hover {
     color: var(--color-text-secondary);
 }
 
-/* One wide episode row per line on desktop */
 .episodes-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -635,7 +608,6 @@ a:hover {
     padding-top: 1.7rem;
 }
 
-/* Card shell */
 .episode-card {
     background: var(--color-offwhite);
     border-radius: var(--radius-md);
@@ -648,7 +620,6 @@ a:hover {
     transform: translateY(-2px);
 }
 
-/* Artwork left, content right */
 .episode-card-inner {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -658,7 +629,6 @@ a:hover {
     align-items: flex-start;
 }
 
-/* Artwork block: larger like reference */
 .episode-image-wrapper {
     flex-shrink: 0;
 }
@@ -671,13 +641,11 @@ img.episode-artwork {
     display: block;
 }
 
-/* Right column content */
 .episode-content {
     display: flex;
     flex-direction: column;
 }
 
-/* Top meta row: season / date / duration */
 .episode-meta {
     color: var(--color-accent);
     font-size: 0.85em;
@@ -685,10 +653,8 @@ img.episode-artwork {
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: 0;
     margin: 0 0 1.2rem 0;
-
 }
 
-/* separators like // between bits */
 .episode-meta span::after {
     content: ' //';
     margin: 0 3px 0 6px;
@@ -719,7 +685,6 @@ img.episode-artwork {
     margin: 0 0 1.2rem 0;
 }
 
-/* Title row with small icon */
 .episode-title {
     font-size: 1.4rem;
     letter-spacing: 0;
@@ -732,7 +697,6 @@ img.episode-artwork {
     font-size: 0.9rem;
 }
 
-/* Description text */
 .episode-description {
     font-size: 15px;
     line-height: 1.6;
@@ -741,7 +705,6 @@ img.episode-artwork {
     padding-bottom: 20px;
 }
 
-/* Footer buttons */
 .episode-footer {
     display: flex;
     gap: var(--space-sm);
@@ -792,56 +755,12 @@ img.episode-artwork {
     color: var(--color-light);
 }
 
-/* Responsive: collapse to stacked layout */
-@media (max-width: 900px) {
-    .episode-card-inner {
-        grid-template-columns: 1fr;
-        row-gap: var(--space-md);
-        padding: var(--space-md) var(--space-lg);
-    }
-
-    img.episode-artwork {
-        width: 100%;
-        max-width: 260px;
-        height: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    .episodes-section {
-        padding: var(--space-xl) var(--space-lg);
-    }
-
-    .episodes-section .section-title {
-        font-size: 1.5rem;
-        margin-bottom: var(--space-lg);
-    }
-
-    .episode-card-inner {
-        padding: var(--space-md);
-    }
-
-    .episode-title {
-        font-size: 1rem;
-    }
-
-    .episode-description {
-        font-size: 0.8125rem;
-    }
-
-    .episode-btn {
-        min-width: 110px;
-        padding: 8px 10px;
-        font-size: 0.65rem;
-    }
-}
-
 /* ============================================
-   CONTACT SECTION 
+   CONTACT SECTION - Clean Swiss Design
    ============================================ */
 
 .contact-section {
-    background: var(--color-offwhite);
+    background: var(--color-morning-snow);
     color: var(--color-primary);
     padding: var(--space-2xl) var(--container-padding);
 }
@@ -872,130 +791,148 @@ img.episode-artwork {
     margin: 0;
     border: none;
     padding: 0;
+    color: var(--color-black-kite);
 }
 
-/* Form on right side */
 .contact-form {
     grid-column: 5 / 13;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    background: var(--color-navbar);
-    border-radius: var(--radius-sm);
-    padding: 32px 32px 28px;
+    gap: 32px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    position: relative;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 8px;
 }
 
 .form-group label {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--color-primary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-black-kite);
+    line-height: 1;
+    margin-bottom: 4px;
 }
 
 .form-group input,
 .form-group textarea {
-    padding: 12px 14px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--color-accent);
-    background: var(--color-offwhite);
-    font-size: 0.95rem;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid rgba(38, 38, 38, 0.1);
+    background: transparent;
+    font-size: 1rem;
+    color: var(--color-black-kite);
+    font-family: var(--font-base);
+    transition: border-color var(--transition-fast);
+    outline: none;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: var(--color-muted);
+    color: #999999;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: var(--color-accent);
+    border-bottom-color: var(--color-toxic-orange);
+    border-bottom-width: 2px;
+    padding-bottom: 11px;
 }
 
 .form-group textarea {
-    border-radius: var(--radius-sm);
-    min-height: 130px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: var(--font-base);
 }
 
 .form-footer {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    margin-top: var(--space-md);
+    margin-top: 20px;
 }
 
 .contact-btn {
-    align-self: flex-end;
+    align-self: flex-start;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 14px 20px;
-    border-radius: var(--radius-sm);
-    background: var(--color-primary);
-    color: var(--color-light);
-    font-size: 0.85rem;
-    text-transform: none;
-    letter-spacing: 0.02em;
+    padding: 16px 28px;
+    border-radius: 0;
+    background: var(--color-toxic-orange);
+    color: var(--color-morning-snow);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: background-color var(--transition-fast);
 }
 
 .contact-btn:hover {
-    transform: translateY(-1px);
-    opacity: 1;
+    background: var(--color-black-kite);
 }
 
 .contact-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
 .form-message {
     font-size: 0.875rem;
-    font-weight: var(--font-weight-medium);
+    font-weight: 500;
     opacity: 0;
     transition: opacity var(--transition-normal);
+    letter-spacing: 0.02em;
 }
 
 .form-message.show {
     opacity: 1;
-    color: var(--color-accent);
 }
 
 .form-message.success {
-    color: var(--color-accent);
+    color: var(--color-toxic-orange);
 }
 
-/* Contact Info - Directly below title, left column */
+.form-message.error {
+    color: var(--color-toxic-orange);
+}
+
 .contact-info {
     grid-column: 1 / 5;
     font-size: 1.0625rem;
     line-height: 1.7;
-    color: var(--color-light);
+    color: var(--color-primary);
     margin-top: var(--space-lg);
     width: 50%;
 }
 
 .contact-info p {
-    margin: 0;
+    margin: 0 0 var(--space-md) 0;
     color: var(--color-primary);
+    font-weight: 400;
 }
 
 .contact-info strong {
-    color: var(--color-primary);
-    font-weight: var(--font-weight-semibold);
+    color: var(--color-toxic-orange);
+    font-weight: 600;
 }
 
 /* ============================================
-   FOOTER - Aqua Mist Background
+   FOOTER
    ============================================ */
 
 footer {
-    background: var(--color-offwhite);
-    border-top: 1px solid rgba(53, 30, 28, 0.1);
+    background: var(--color-light);
     padding: var(--space-xl) var(--container-padding);
 }
 
@@ -1033,10 +970,15 @@ footer {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN - DESKTOP (1024px+)
+   RESPONSIVE DESIGN - TABLET (1024px - 769px)
    ============================================ */
 
 @media (max-width: 1024px) {
+    :root {
+        --container-padding: 40px;
+        --space-2xl: 40px;
+    }
+
     .contact-header {
         grid-column: 1 / 7;
     }
@@ -1064,7 +1006,7 @@ footer {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN - TABLET (768px - 1024px)
+   RESPONSIVE DESIGN - MOBILE/TABLET (768px)
    ============================================ */
 
 @media (max-width: 768px) {
@@ -1073,21 +1015,59 @@ footer {
         --space-2xl: 40px;
     }
 
+    body {
+        padding-bottom: 70px;
+    }
+
     .navbar {
-        padding: var(--space-sm) var(--container-padding);
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        width: 100%;
+        padding: 10px var(--container-padding);
+        border-bottom: none;
+        border-top: 1px solid var(--color-border);
+        sticky: none;
     }
 
     .navbar-container {
         grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .navbar-brand {
         grid-column: 1;
+        display: none;
     }
 
     .navbar-nav {
         grid-column: 1;
-        gap: var(--space-md);
+        justify-content: center;
+        gap: 48px;
+        margin: 0;
+    }
+
+    .nav-link {
+        font-size: 0.65rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 0;
+    }
+
+    .nav-link i {
+        font-size: 1.25rem;
+    }
+
+    .nav-link span {
+        display: block;
+    }
+
+    .nav-link::after {
+        display: none;
     }
 
     .hero-section {
@@ -1113,7 +1093,7 @@ footer {
 
     .cta-artwork {
         grid-column: 1;
-        margin-bottom: var(--space-lg);
+        margin-bottom: var(--space-xs);
     }
 
     .cta-content {
@@ -1171,7 +1151,6 @@ footer {
 
     .footer-content {
         grid-template-columns: 1fr;
-        gap: var(--space-md);
     }
 
     #footer-copyright,
@@ -1180,12 +1159,24 @@ footer {
     }
 
     .episodes-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+    }
+
+    .episode-card-inner {
+        grid-template-columns: 1fr;
+        row-gap: var(--space-md);
+        padding: var(--space-md) var(--space-lg);
+    }
+
+    img.episode-artwork {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
     }
 }
 
 /* ============================================
-   RESPONSIVE DESIGN - MOBILE (under 768px)
+   RESPONSIVE DESIGN - MOBILE (under 480px)
    ============================================ */
 
 @media (max-width: 480px) {
@@ -1193,6 +1184,10 @@ footer {
         --container-padding: 20px;
         --grid-gap: 16px;
         --space-2xl: 24px;
+    }
+
+    body {
+        padding-bottom: 70px;
     }
 
     h1 {
@@ -1203,12 +1198,22 @@ footer {
         font-size: 1.35rem;
     }
 
-    .navbar-brand {
-        font-size: 1rem;
+    .navbar {
+        padding: 8px var(--container-padding);
+    }
+
+    .navbar-nav {
+        gap: 36px;
     }
 
     .nav-link {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
+        gap: 3px;
+        padding: 6px 0;
+    }
+
+    .nav-link i {
+        font-size: 1.1rem;
     }
 
     .hero-section {
@@ -1229,11 +1234,11 @@ footer {
     }
 
     .cta-section {
-        padding: var(--space-2xl) var(--container-padding);
+        padding: var(--space-sm) var(--container-padding);
     }
 
     .cta-album-art {
-        max-width: 140px;
+        max-width: 100px;
     }
 
     .cta-title {
@@ -1242,17 +1247,11 @@ footer {
 
     .cta-subtitle {
         font-size: 0.8rem;
+        margin-bottom: var(--space-sm);
     }
 
-    .description-rule {
-        width: 100%;
-        height: 2px;
-        min-height: auto;
-    }
-
-    .about-description {
-        flex-direction: column;
-        gap: var(--space-md);
+    .about-section {
+        padding: var(--space-2xl) var(--space-md);
     }
 
     .contact-section {
@@ -1286,12 +1285,7 @@ footer {
         margin-bottom: var(--space-lg);
     }
 
-    .episodes-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-    }
-
-    .episode-card {
+    .episode-card-inner {
         padding: var(--space-md);
     }
 
@@ -1304,9 +1298,9 @@ footer {
     }
 
     .episode-btn {
+        min-width: 110px;
         padding: 8px 10px;
         font-size: 0.65rem;
-        min-width: 90px;
     }
 
     footer {

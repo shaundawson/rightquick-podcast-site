@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM9ECL185S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-GM9ECL185S');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Right Quick Podcast - Queer, Unfriendly Black Hotties™</title>
@@ -32,6 +41,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
 </head>
 
+
 <body>
     <!-- NAVBAR -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
@@ -40,9 +50,18 @@
                 Right Quick Podcast
             </a>
             <ul class="navbar-nav">
-                <li><a class="nav-link" href="#about">About</a></li>
-                <li><a class="nav-link" href="#episodes">Episodes</a></li>
-                <li><a class="nav-link" href="#contact">Contact</a></li>
+                <li><a class="nav-link" href="#about">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        <span>About</span>
+                    </a></li>
+                <li><a class="nav-link" href="#episodes">
+                        <i class="fas fa-play-circle" aria-hidden="true"></i>
+                        <span>Episodes</span>
+                    </a></li>
+                <li><a class="nav-link" href="#contact">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span>Contact</span>
+                    </a></li>
             </ul>
         </div>
     </nav>
@@ -98,7 +117,7 @@
             </div>
             <div class="cta-content">
                 <h2 class="cta-title">Love Right Quick?</h2>
-                <p class="cta-subtitle">Become a patron.</p>
+                <p class="cta-subtitle">Support the voices shaping culture.</p>
             </div>
             <div class="cta-button-wrapper">
                 <a href="https://patreon.com/cw/theyagenda" target="_blank" rel="noopener noreferrer" class="cta-btn">
@@ -233,7 +252,10 @@
             <div class="contact-grid">
 
                 <div class="contact-info">
-                    <p>Have feedback or story ideas? Reach us at <strong>rightquickpod@gmail.com</strong></p>
+                    <p>Have feedback or story ideas? We're listening. Send them our way at
+                        <strong>rightquickpod@gmail.com</strong> or use
+                        this form. We read every message.
+                    </p>
                 </div>
 
                 <form class="contact-form" id="contactForm" aria-label="Contact form">

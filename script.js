@@ -110,7 +110,7 @@ async function displayEpisodesAsTable() {
     }
 
     const sortedEpisodes = episodes.sort(
-        (a, b) => new Date(b.release_date) - new Date(a.release_date)
+        (a, b) => new Date(a.release_date) - new Date(b.release_date)
     );
 
     let gridHTML = '<div class="episodes-grid">';
