@@ -249,7 +249,7 @@ a:hover {
 
 .hero-section {
     background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 40%, rgba(53, 30, 28, 0.8) 65%, rgba(53, 30, 28, 0.4) 90%, rgba(53, 30, 28, 0) 100%),
-        url('hero-bg.png') right center / contain no-repeat;
+        url('./public/hero-bg.png') right center / contain no-repeat;
     background-color: var(--color-primary);
     min-height: 75vh;
     display: flex;
