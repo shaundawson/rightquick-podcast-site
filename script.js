@@ -6,9 +6,9 @@
 
 // These will be injected by Amplify env vars in production
 // For local dev, use .env file or APP_CONFIG
-const SPOTIFY_SHOW_ID = window.APP_CONFIG?.SPOTIFY_SHOW_ID || '3nwEyCN9eUwP7QKneoYYiJ';
-const APPLE_PODCAST_ID = window.APP_CONFIG?.APPLE_PODCAST_ID || '1849280234';
-const API_ENDPOINT = window.APP_CONFIG?.API_ENDPOINT || 'https://6fh6qddx41.execute-api.us-east-1.amazonaws.com/api/episodes';
+const SPOTIFY_SHOW_ID = window.APP_CONFIG?.SPOTIFY_SHOW_ID;
+const APPLE_PODCAST_ID = window.APP_CONFIG?.APPLE_PODCAST_ID;
+const API_ENDPOINT = window.APP_CONFIG?.API_ENDPOINT;
 
 let appleEpisodes = {};
 
@@ -53,6 +53,7 @@ async function fetchSpotifyEpisodesData() {
         return null;
     }
 }
+
 
 /* ============================================
    APPLE PODCASTS API - Fetch episodes
@@ -128,6 +129,7 @@ function createEpisodeCard(episode) {
     const releaseDate = new Date(episode.release_date);
     const durationMs = episode.duration_ms || 0;
     const spotifyUrl = episode.external_urls?.spotify || '#';
+    const appleUrl = episode.appleUrl || `https://podcasts.apple.com/podcast/id1849280234`;
     const descriptionFull = episode.description || '';
     const episodeImage = episode.images?.[0]?.url || 'artwork.png';
 
@@ -176,11 +178,11 @@ function createEpisodeCard(episode) {
                 <i class="fa-brands fa-spotify" aria-hidden="true"></i>
                 <span>Listen on Spotify</span>
               </a>
-              <a href="${finalAppleUrl}" target="_blank" rel="noopener noreferrer"
-                 class="episode-btn episode-btn-apple" title="Listen on Apple Podcasts">
-                <i class="fa-brands fa-apple" aria-hidden="true"></i>
-                <span>Listen on Apple Podcasts</span>
-              </a>
+          <a href="${appleUrl}" target="_blank" rel="noopener noreferrer"
+             class="episode-btn episode-btn-apple" title="Listen on Apple Podcasts">
+            <i class="fa-brands fa-apple" aria-hidden="true"></i>
+            <span>Listen on Apple Podcasts</span>
+          </a>
             </div>
           </div>
         </div>
