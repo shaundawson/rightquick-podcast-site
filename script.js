@@ -9,6 +9,7 @@
 const SPOTIFY_SHOW_ID = window.APP_CONFIG?.SPOTIFY_SHOW_ID;
 const APPLE_PODCAST_ID = window.APP_CONFIG?.APPLE_PODCAST_ID;
 const API_ENDPOINT = window.APP_CONFIG?.API_ENDPOINT;
+const WEB3FORMS_ACCESS_KEY = window.APP_CONFIG?.WEB3FORMS_ACCESS_KEY || '';
 
 let appleEpisodes = {};
 
@@ -239,45 +240,60 @@ function showError(message) {
 /* ============================================
    CONTACT FORM - Handle submission
    ============================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
             const formMessage = document.getElementById('formMessage');
             const submitBtn = contactForm.querySelector('button[type="submit"]');
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
 
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
 
             try {
+                // 1. Build FormData from the whole form (this includes h-captcha-response)
+                const formData = new FormData(contactForm);
+
+                // 2. Ensure access_key is set (from APP_CONFIG or hidden input)
+                if (!formData.get('access_key')) {
+                    formData.set('access_key', WEB3FORMS_ACCESS_KEY);
+                }
+
+                // 3. Optional extra fields
+                if (!formData.get('subject')) {
+                    formData.set('subject', 'New message from Right Quick website');
+                }
+
+                // 4. Convert FormData -> plain object -> JSON
+                const dataObject = Object.fromEntries(formData.entries());
+                const jsonBody = JSON.stringify(dataObject);
+
+                // 5. Send to Web3Forms
                 const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
-                    body: JSON.stringify({
-                        access_key: 'c18bbf17-7942-4ffd-b1e4-fb292022478b',
-                        subject: 'New message from rightquickpod.com',
-                        name: name,
-                        email: email,
-                        message: message
-                    })
+                    body: jsonBody
                 });
 
-                if (response.ok) {
+                const result = await response.json();
+
+                if (response.ok && result.success) {
                     formMessage.className = 'form-message success show';
                     formMessage.textContent = '✅ Message sent! We\'ll get back to you soon.';
                     contactForm.reset();
                 } else {
-                    throw new Error('Form submission failed');
+                    formMessage.className = 'form-message error show';
+                    formMessage.textContent =
+                        result.message || '❌ Error sending message. Please try again.';
                 }
             } catch (error) {
+                console.error('Web3Forms error', error);
+                const formMessage = document.getElementById('formMessage');
                 formMessage.className = 'form-message error show';
                 formMessage.textContent = '❌ Error sending message. Please try again.';
             } finally {
@@ -287,3 +303,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
