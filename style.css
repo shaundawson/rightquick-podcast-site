@@ -198,6 +198,7 @@ a:hover {
     align-items: center;
     cursor: pointer;
     transition: color var(--transition-fast);
+    gap: 8px;
 }
 
 .navbar-brand:hover {
