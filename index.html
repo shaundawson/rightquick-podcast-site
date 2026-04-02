@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics tag (tracks page views) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM9ECL185S"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-GM9ECL185S');
     </script>
+
+    <!-- Basic document meta tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Right Quick Podcast - Queer, Unfriendly Black Hotties™</title>
@@ -18,61 +19,74 @@
         content="A bite-sized pop-culture conversation with two queer, unfriendly black hotties. Listen to the latest episodes on Spotify, Apple Podcasts, and more." />
     <meta name="theme-color" content="#113677" />
 
-    <!-- App Configuration -->
+    <!-- App config exposed to script.js (Web3Forms key) -->
     <script>
-        // Local dev: replace with your actual values from .env
-        // Production: Amplify injects these as env vars
         window.APP_CONFIG = {
-            SPOTIFY_SHOW_ID: '3nwEyCN9eUwP7QKneoYYiJ',
-            APPLE_PODCAST_ID: '1849280234',
-            API_ENDPOINT: 'https://6fh6qddx41.execute-api.us-east-1.amazonaws.com/api/episodes',
             WEB3FORMS_ACCESS_KEY: 'c18bbf17-7942-4ffd-b1e4-fb292022478b'
         };
     </script>
 
-    <!-- Icons -->
+    <!-- Font Awesome icon set (Spotify, Apple, etc.) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Custom Stylesheet -->
+    <!-- Main site stylesheet -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- EmailJS (if you decide to send email directly from the form) -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
 </head>
 
-
 <body>
-    <!-- NAVBAR -->
+    <!-- ==========================================
+         NAVBAR (SITE HEADER)
+         ========================================== -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar-container">
+            <!-- Brand: scrolls back to hero when clicked -->
             <a href="#hero-section" class="navbar-brand">
                 <i class="fa fa-headphones" aria-hidden="true"></i>
-                Right Quick Podcast
+                <span>Right Quick Podcast</span>
             </a>
+
+            <!-- Right-side nav links (Patreon + Contact) -->
             <ul class="navbar-nav">
-                <li><a class="nav-link" href="#about">
-                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                        <span>About</span>
-                    </a></li>
-                <li><a class="nav-link" href="#episodes">
-                        <i class="fas fa-play-circle" aria-hidden="true"></i>
-                        <span>Episodes</span>
-                    </a></li>
-                <li><a class="nav-link" href="#contact">
+                <li>
+                    <a class="nav-link" href="https://patreon.com/cw/theyagenda" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-patreon" aria-hidden="true"></i>
+                        <span>Join On Patreon</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#contact">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <span>Contact</span>
-                    </a></li>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!-- HERO SECTION - FEATURED EPISODE -->
+    <!-- ==========================================
+         HERO SECTION (FEATURED EPISODE)
+         ========================================== -->
     <section id="hero-section" class="hero-section" aria-label="Featured episode">
         <div class="hero-container">
-            <div class="hero-content">
-                <span class="featured-label">Featured Episode</span>
+            <div class="hero-main">
+                <!-- Tagline / deck above the episode player -->
+                <p class="hero-deck">
+                    Queer, <strong>unfriendly Black hotties™</strong> talking culture, mess, and moments that matter.
+                </p>
 
+                <!-- Cover art + "Featured Episode" text -->
+                <div class="hero-heading">
+                    <img src="./public/artwork.png" alt="Right Quick podcast cover art" class="hero-album-art">
+                    <span class="featured-label">Featured Episode</span>
+                </div>
+
+                <!-- Embedded Audioboom player (latest episode) -->
                 <div class="player-section">
                     <iframe width="100%" height="95"
                         src="https://embeds.audioboom.com/channels/5035101/embed?&image_option=hidden&link_color=351E1C&player_mode=latest_episode&player_theme=dark&v=202301"
@@ -83,7 +97,10 @@
                     </iframe>
                 </div>
 
+                <!-- Streaming platform label -->
                 <span class="listen-label">Listen On</span>
+
+                <!-- Streaming platform buttons -->
                 <div class="button-group">
                     <a href="https://open.spotify.com/show/3nwEyCN9eUwP7QKneoYYiJ" target="_blank"
                         rel="noopener noreferrer" class="btn-stream" aria-label="Listen on Spotify">
@@ -110,172 +127,53 @@
         </div>
     </section>
 
-    <!-- CTA SECTION - PATREON SUPPORT -->
-    <section class="cta-section" aria-label="Support us">
-        <div class="cta-container">
-            <div class="cta-artwork">
-                <img src="./public/artwork.png" alt="Right Quick podcast cover art" class="cta-album-art">
-            </div>
-            <div class="cta-content">
-                <h2 class="cta-title">Love Right Quick?</h2>
-                <p class="cta-subtitle">Support the voices shaping culture.</p>
-            </div>
-            <div class="cta-button-wrapper">
-                <a href="https://patreon.com/cw/theyagenda" target="_blank" rel="noopener noreferrer" class="cta-btn">
-                    <i class="fab fa-patreon" aria-hidden="true"></i>
-                    <span>Join on Patreon</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="about-section" aria-labelledby="about-title">
-        <div class="about-container">
-            <header class="section-header">
-                <h3 class="section-heading">
-                    <span>About <em>Right Quick</em></span>
-                </h3>
-            </header>
-
-            <div class="about-grid">
-                <!-- PODCAST DESCRIPTION -->
-                <div class="about-description">
-                    <div class="description-content">
-                        <h3 class="section-title">Queer Voices Reclaiming Pop Culture</h3>
-                        <h4 class="section-subtitle">
-                            A sharp, unfiltered conversation on entertainment, culture, and everything in between
-                        </h4>
-                        <p class="podcast-description">
-                            Right Quick is a bite-sized pop-culture conversation with two, queer unfriendly black
-                            hotties™.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- TEAM CARDS -->
-                <div class="team-grid">
-                    <!-- Team Member 1: Nandi K. -->
-                    <div class="team-card">
-                        <img src="https://scontent-mia3-3.xx.fbcdn.net/v/t39.30808-1/597777691_10172931369225562_8594813390410799864_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d2534&_nc_ohc=KhfsL_la04kQ7kNvwHVUb_d&_nc_oc=Adl2Rj2o3aHYUIKAAQnCyWbR9TZWEEERl8IsdJb7F3QWJNlJMSkf8tf2WAiRLzTtxXaLqh9Hn7aufObVAIIsTcJa&_nc_zt=24&_nc_ht=scontent-mia3-3.xx&_nc_gid=8u6NlBiiqT7KJkrcgvYfuQ&oh=00_AfnL8kV8P-HE-J3UE_f1lMqgwvrE7VRfOM_qkavImTwBJQ&oe=693E20F3"
-                            class="team-img" alt="Nandi K.">
-                        <h3 class="team-name">Nandi K.</h3>
-                        <p class="team-role">Host &amp; Executive Producer</p>
-                        <p class="team-bio">
-                            Nandi brings sharp cultural commentary and infectious energy to every episode. Her quick wit
-                            and
-                            unfiltered perspective set the tone for Right Quick's unforgettable conversations.
-                        </p>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/nandikayyy" target="_blank" rel="noopener noreferrer"
-                                class="social-icon" aria-label="Nandi K. on Instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="https://www.facebook.com/nandik0303" target="_blank" rel="noopener noreferrer"
-                                class="social-icon" aria-label="Nandi K. on Facebook">
-                                <i class="fab fa-facebook" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Team Member 2: Vance Gowe -->
-                    <div class="team-card">
-                        <img src="https://scontent-mia3-3.xx.fbcdn.net/v/t39.30808-1/531979973_24520702294209703_1653124132462029442_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=110&ccb=1-7&_nc_sid=e99d92&_nc_ohc=tez-WQEHGWwQ7kNvwFhwgWH&_nc_oc=AdnLGBZwXYQiKqiD2OzAwxlCPSwORamuoyapRsY-DNo-HJf8CfUul42ygLn-j3I415Es1QzYf6Et1ijGucug_yeH&_nc_zt=24&_nc_ht=scontent-mia3-3.xx&_nc_gid=Ktg5pPPnVGgwQ8jCISCfFA&oh=00_Aflz1lG2UJVR4tNiTgYeGoQEDH57mBGc-ZE14bY7zMjhBw&oe=693E3DD3"
-                            class="team-img" alt="Vance Gowe">
-                        <h3 class="team-name">Vance Gowe</h3>
-                        <p class="team-role">Co-host &amp; Producer</p>
-                        <p class="team-bio">
-                            Vance is the creative force behind Right Quick's production. His deep knowledge of pop
-                            culture and sharp
-                            production skills ensure every episode is polished and engaging.
-                        </p>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/sir_lance_a_thawt/" target="_blank"
-                                rel="noopener noreferrer" class="social-icon" aria-label="Vance Gowe on Instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="https://www.facebook.com/lance.lowe.5" target="_blank" rel="noopener noreferrer"
-                                class="social-icon" aria-label="Vance Gowe on Facebook">
-                                <i class="fab fa-facebook" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Team Member 3: Aaron Rand Freeman -->
-                    <div class="team-card">
-                        <img src="https://scontent-mia3-3.xx.fbcdn.net/v/t39.30808-1/504904985_10231518550400144_8918250374943901146_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_ohc=J-GsmauzfKYQ7kNvwH1KDlS&_nc_oc=Adl57Cyt37v9Z_MxCrVJpLLhmUr0SJGgSF_4dQt7aqs8ZRJU_rCq3TDuKC7bdMVGQZ0vxC0mCBnSlpVyb2VyPuKy&_nc_zt=24&_nc_ht=scontent-mia3-3.xx&_nc_gid=Di3qc5mFkACrpfvcjDYBBw&oh=00_Afm6zZT6N5Vah8cq4-j0CpwoHf_VY7zvGOLG_UlOapJ-HA&oe=693E1E44"
-                            class="team-img" alt="Aaron Rand Freeman">
-                        <h3 class="team-name">Aaron Rand Freeman</h3>
-                        <p class="team-role">Audio Producer</p>
-                        <p class="team-bio">
-                            Aaron's technical expertise and attention to detail make Right Quick sound premium. He
-                            ensures every
-                            episode is mastered to perfection from concept to delivery.
-                        </p>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/randfreeman" target="_blank" rel="noopener noreferrer"
-                                class="social-icon" aria-label="Aaron Rand Freeman on Instagram">
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="https://www.facebook.com/aaronrandfreeman" target="_blank"
-                                rel="noopener noreferrer" class="social-icon"
-                                aria-label="Aaron Rand Freeman on Facebook">
-                                <i class="fab fa-facebook" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EPISODES SECTION -->
-    <section id="episodes" class="episodes-section" aria-labelledby="episodes-title">
-        <div class="episodes-container">
-            <header class="section-header">
-                <h3 class="section-heading">
-                    <span>Browse <em>Episodes</em></span>
-                </h3>
-            </header>
-
-            <div id="episodes-container" class="episodes-list">Loading episodes...</div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
+    <!-- ==========================================
+         CONTACT SECTION
+         ========================================== -->
     <section id="contact" class="contact-section" aria-labelledby="contact-title">
         <div class="contact-container">
+            <!-- Re-usable section header component -->
             <header class="section-header">
-                <h3 class="section-heading">
+                <h3 class="section-heading" id="contact-title">
                     <span>Send a <em>Message</em></span>
                 </h3>
             </header>
-            <div class="contact-grid">
 
+            <div class="contact-grid">
+                <!-- Left column: contact blurb + email -->
                 <div class="contact-info">
-                    <p>Have feedback or story ideas? We're listening. Send them our way at
-                        <strong>rightquickpod@gmail.com</strong> or use
-                        this form. We read every message.
+                    <p>
+                        Have feedback or story ideas? We're listening. Send them our way at
+                        <strong>rightquickpod@gmail.com</strong> or use this form. We read every message.
                     </p>
                 </div>
 
+                <!-- Right column: contact form (wired up by script.js / Web3Forms) -->
                 <form class="contact-form" id="contactForm" aria-label="Contact form">
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" placeholder="Full name" required>
                     </div>
+
                     <div class="form-group">
                         <label for="email">Your Email</label>
                         <input type="email" id="email" name="email" placeholder="your@email.com" required>
                     </div>
+
                     <div class="form-group">
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" placeholder="Tell us what's on your mind..."
                             required></textarea>
                     </div>
+
                     <div class="form-footer">
+                        <!-- Web3Forms hCaptcha placeholder -->
                         <div class="h-captcha" data-captcha="true"></div>
+
+                        <!-- Submit button -->
                         <button type="submit" class="contact-btn">Send Message</button>
+
+                        <!-- Response message (success / error text) -->
                         <div id="formMessage" class="form-message" role="alert"></div>
                     </div>
                 </form>
@@ -283,19 +181,30 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
     <footer role="contentinfo">
         <div class="footer-inner">
             <div class="footer-content">
+                <!-- Populated with current year by script.js -->
                 <div id="footer-copyright"></div>
-                <div>Designed &amp; Developed with 💜 by
-                    <a href="https://www.meshaestudios.com" target="_blank" rel="noopener noreferrer">Meshae Studios</a>
+
+                <!-- Designer credit -->
+                <div>
+                    Designed &amp; Developed with 💜 by
+                    <a href="https://www.meshaestudios.com" target="_blank" rel="noopener noreferrer">
+                        Meshae Studios
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- Web3Forms client script to render hCaptcha & inject h-captcha-response -->
+
+    <!-- Web3Forms script to render hCaptcha + handle submission -->
     <script src="https://web3forms.com/client/script.js" async defer></script>
+
+    <!-- Main site JS (handles contact form behavior, etc.) -->
     <script src="script.js"></script>
 </body>
 

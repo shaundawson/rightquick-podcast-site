@@ -1,19 +1,23 @@
 /* ============================================
-   RIGHT QUICK PODCAST - MAIN STYLESHEET
+   RIGHT QUICK PODCAST - GLOBAL RESET & BASE
    ============================================ */
 
+/* Basic reset so all browsers start from the same point */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Global HTML behavior (smooth scroll, base font size) */
 html {
     scroll-behavior: smooth;
     font-size: 16px;
 }
 
+/* Base body styles (background, default text, font stack) */
 body {
+    margin: 0;
     background: #F5F4ED;
     color: #351E1C;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
@@ -23,16 +27,20 @@ body {
     letter-spacing: -0.3px;
 }
 
+
 /* ============================================
-   DESIGN TOKENS
+   DESIGN TOKENS (SPACING, COLORS, FONTS)
    ============================================ */
 
+/* CSS variables used across the site for consistent design */
 :root {
+    /* Grid + layout */
     --grid-columns: 12;
     --grid-gap: 24px;
     --container-padding: 120px;
+    --content-max-width: 1280px;
 
-    /* Named Color Palette */
+    /* Brand color palette */
     --color-morning-snow: #F5F4ED;
     --color-amazon-mist: #ECECDC;
     --color-agua-mist: #A0C9CB;
@@ -40,7 +48,7 @@ body {
     --color-garnet: #733635;
     --color-toxic-orange: #FF6037;
 
-    /* Semantic Aliases */
+    /* Semantic color aliases (used in components) */
     --color-primary: #351E1C;
     --color-accent: #FF6037;
     --color-navbar: #A0C9CB;
@@ -51,12 +59,14 @@ body {
     --color-text-secondary: #B8B8B8;
     --color-offwhite: #F5F5F5;
 
+    /* Font weights + base stack variable */
     --font-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
     --font-weight-regular: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
+    /* Spacing scale (4–8px multiples) */
     --space-xs: 8px;
     --space-sm: 12px;
     --space-md: 16px;
@@ -64,30 +74,35 @@ body {
     --space-xl: 32px;
     --space-2xl: 60px;
 
+    /* Font sizes (tokens instead of hard-coded values) */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
     --font-size-base: 1rem;
-    --font-size-md: 1rem;
     --font-size-lg: 1.125rem;
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
     --font-size-3xl: 2rem;
     --font-size-4xl: 2.5rem;
 
+    /* Corner radii (for cards, buttons, etc.) */
     --radius-sm: 4px;
     --radius-md: 8px;
 
+    /* Transition timings */
     --transition-fast: 150ms ease-out;
     --transition-normal: 250ms ease-out;
 
+    /* Focus styles (for accessibility) */
     --focus-ring: 0 0 0 3px rgba(255, 96, 55, 0.2);
     --focus-outline: 2px solid #FF6037;
 }
 
+
 /* ============================================
-   TYPOGRAPHY
+   TYPOGRAPHY BASICS
    ============================================ */
 
+/* Heading styles (H1–H6 share same base style) */
 h1,
 h2,
 h3,
@@ -101,6 +116,7 @@ h6 {
     color: var(--color-primary);
 }
 
+/* Specific heading sizes */
 h1 {
     font-size: 2.5rem;
 }
@@ -113,10 +129,12 @@ h3 {
     font-size: 1.5rem;
 }
 
+/* Default paragraph spacing */
 p {
     margin: 0 0 var(--space-lg) 0;
 }
 
+/* Link styles (accent color + hover change) */
 a {
     color: var(--color-accent);
     text-decoration: none;
@@ -127,10 +145,12 @@ a:hover {
     color: var(--color-agua-mist);
 }
 
+
 /* ============================================
-   SHARED SECTION HEADER
+   SHARED SECTION HEADER (USED IN CONTACT)
    ============================================ */
 
+/* Wrapper for section titles */
 .section-header {
     width: 100%;
     margin-bottom: 24px;
@@ -138,6 +158,7 @@ a:hover {
     border-bottom: 2px solid rgba(38, 38, 38, 0.1);
 }
 
+/* Main section heading style */
 .section-heading {
     position: relative;
     display: inline-block;
@@ -151,11 +172,13 @@ a:hover {
     display: inline-block;
 }
 
+/* Highlighted word inside heading */
 .section-heading em {
     font-style: normal;
     color: var(--color-accent);
 }
 
+/* Accent underline under heading */
 .section-heading::after {
     content: "";
     position: absolute;
@@ -166,10 +189,12 @@ a:hover {
     background: var(--color-accent);
 }
 
+
 /* ============================================
-   NAVBAR - DESKTOP (Top Sticky)
+   NAVBAR
    ============================================ */
 
+/* Top navigation bar (background + sticky positioning) */
 .navbar {
     background: var(--color-agua-mist);
     border-bottom: 1px solid var(--color-border);
@@ -180,33 +205,38 @@ a:hover {
     width: 100%;
 }
 
+/* Grid container for nav contents, centered on the page */
 .navbar-container {
     width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
     gap: var(--grid-gap);
     align-items: center;
 }
 
+/* Brand area (headphones icon + title) */
 .navbar-brand {
-    grid-column: 1 / 3;
+    grid-column: 1 / 5;
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--color-black-kite);
     display: flex;
     align-items: center;
-    cursor: pointer;
-    transition: color var(--transition-fast);
     gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .navbar-brand:hover {
     color: var(--color-accent);
 }
 
+/* Right side nav links (Patreon + Contact) */
 .navbar-nav {
-    grid-column: 3 / 13;
+    grid-column: 9 / 13;
     display: flex;
     gap: 32px;
     list-style: none;
@@ -214,6 +244,7 @@ a:hover {
     align-items: center;
 }
 
+/* Individual nav link styling */
 .nav-link {
     font-size: 0.7rem;
     font-weight: 600;
@@ -232,6 +263,7 @@ a:hover {
     color: var(--color-accent);
 }
 
+/* Underline animation on nav links */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -247,59 +279,112 @@ a:hover {
     width: 100%;
 }
 
+
 /* ============================================
-   HERO SECTION - Featured Episode
+   HERO SECTION (FULL SCREEN ABOVE THE FOLD)
    ============================================ */
 
+/* Full-screen hero background + gradient over image */
 .hero-section {
-    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 40%, rgba(53, 30, 28, 0.8) 65%, rgba(53, 30, 28, 0.4) 90%, rgba(53, 30, 28, 0) 100%),
-        url('./public/hero-bg.png') right center / contain no-repeat;
+    background:
+        linear-gradient(90deg,
+            var(--color-primary) 0%,
+            var(--color-primary) 42%,
+            rgba(53, 30, 28, 0.88) 58%,
+            rgba(53, 30, 28, 0.56) 74%,
+            rgba(53, 30, 28, 0.18) 88%,
+            rgba(53, 30, 28, 0) 100%),
+        url('./public/hero-bg.png') right bottom / contain no-repeat;
     background-color: var(--color-primary);
-    min-height: 75vh;
+    /* subtract navbar height so hero + nav roughly fill viewport */
+    min-height: calc(100vh - 69px);
     display: flex;
     align-items: center;
     padding: var(--space-xl) var(--container-padding);
     border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
 }
 
+/* Grid container for hero content */
 .hero-container {
     width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
     gap: var(--grid-gap);
+    align-items: end;
 }
 
-.hero-content {
+/* Left hero column (tagline + title + player + buttons) */
+.hero-main {
     grid-column: 1 / 7;
     color: var(--color-light);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    max-width: 860px;
 }
 
+/* Row containing cover art and "Featured Episode" text */
+.hero-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+
+/* Hero tagline / deck line above the player */
+.hero-deck {
+    margin: 0 0 var(--space-2xl) 0;
+    color: var(--color-agua-mist);
+    font-size: 1.5rem;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    max-width: 30ch;
+    /* limit text width for a strong block of copy */
+    text-wrap: balance;
+    /* nicer line breaks in modern browsers */
+}
+
+/* Emphasized part of the tagline (Swiss-style bold) */
+.hero-deck strong {
+    color: var(--color-light);
+    font-weight: 700;
+}
+
+/* Small cover art icon next to "Featured Episode" */
+.hero-album-art {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    display: block;
+    flex-shrink: 0;
+}
+
+/* "Featured Episode" label styling */
 .featured-label {
     font-size: 2.5rem;
     font-weight: 300;
     letter-spacing: -0.05em;
-    color: var(--color-agua-mist);
-    margin-bottom: var(--space-lg);
+    color: var(--color-offwhite);
+    margin: 0;
 }
 
-.hero-content h1 {
-    font-size: 2.75rem;
-    color: var(--color-light);
-    margin-bottom: var(--space-lg);
-}
-
+/* Wrap for Audioboom player embed */
 .player-section {
     margin-bottom: var(--space-lg);
 }
 
+/* Force player to full width and rounded corners */
 .player-section iframe {
     width: 100% !important;
     height: 95px !important;
     border-radius: var(--radius-sm);
 }
 
+/* "Listen On" label above streaming buttons */
 .listen-label {
     font-size: 0.65rem;
     font-weight: var(--font-weight-regular);
@@ -309,12 +394,14 @@ a:hover {
     margin-bottom: var(--space-md);
 }
 
+/* Grid layout for the four platform buttons */
 .button-group {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-md);
 }
 
+/* Shared styles for each platform button */
 .btn-stream {
     border: 1.5px solid var(--color-light);
     background: transparent;
@@ -332,6 +419,7 @@ a:hover {
     transition: all var(--transition-normal);
 }
 
+/* Hover state for streaming buttons */
 .btn-stream:hover {
     background: var(--color-accent);
     border-color: var(--color-accent);
@@ -339,438 +427,35 @@ a:hover {
     transform: translateY(-2px);
 }
 
+/* First button (Spotify) appears as primary by default */
 .btn-stream:first-of-type {
     background: var(--color-accent);
     border-color: var(--color-accent);
     color: var(--color-primary);
 }
 
-/* ============================================
-   CTA SECTION - Call to Action (Patreon)
-   ============================================ */
-
-.cta-section {
-    background: var(--color-light);
-    color: var(--color-primary);
-    padding: var(--space-xl) var(--container-padding);
-    border-top: 1px solid var(--color-border);
-}
-
-.cta-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    /* gap: var(--grid-gap); */
-    align-items: center;
-}
-
-.cta-artwork {
-    grid-column: 1 / 2;
-}
-
-.cta-album-art {
-    width: 100%;
-    border-radius: var(--radius-md);
-}
-
-.cta-content {
-    grid-column: 2 / 9;
-    padding-left: var(--space-lg);
-}
-
-.cta-title {
-    font-size: 1.75rem;
-    margin-bottom: var(--space-xs);
-}
-
-.cta-subtitle {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
-}
-
-.cta-button-wrapper {
-    grid-column: 9 / 13;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.cta-btn {
-    background: var(--color-agua-mist);
-    color: var(--color-primary);
-    padding: 14px 20px;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    transition: all var(--transition-normal);
-}
-
-.cta-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-    color: var(--color-primary);
-    background: var(--color-accent);
-}
 
 /* ============================================
-   ABOUT SECTION - Team & Description
+   CONTACT SECTION
    ============================================ */
 
-.about-section {
-    background: var(--color-offwhite);
-    color: var(--color-primary);
-    padding: var(--space-2xl) var(--container-padding);
-}
-
-.about-container {
-    width: 100%;
-    padding-top: var(--space-xl);
-    padding-bottom: var(--space-2xl);
-}
-
-.about-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    gap: var(--grid-gap);
-    align-items: flex-start;
-}
-
-.about-description {
-    grid-column: 1 / 4;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-}
-
-.about-eyebrow {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--color-text-secondary);
-}
-
-.description-rule {
-    display: none;
-}
-
-.description-content {
-    text-align: left;
-    margin-top: var(--space-2xl);
-}
-
-.description-content .section-title {
-    font-size: 2rem;
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--space-sm);
-}
-
-.section-subtitle {
-    font-size: 0.95rem;
-    color: var(--color-accent);
-    letter-spacing: normal;
-    text-transform: none;
-    margin: 0 0 var(--space-md) 0;
-    line-height: 1.5;
-    font-weight: 400;
-}
-
-.podcast-description {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin: 0;
-}
-
-.team-grid {
-    grid-column: 5 / 13;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--grid-gap);
-}
-
-.team-card {
-    background: var(--color-primary);
-    border-radius: var(--radius-md);
-    padding: var(--space-xl) var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 1px solid var(--color-accent);
-    transition: all var(--transition-normal);
-}
-
-.team-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    border-color: var(--color-agua-mist);
-}
-
-.team-img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: var(--space-md);
-    filter: grayscale(100%);
-    transition: filter var(--transition-normal);
-}
-
-.team-card:hover .team-img {
-    filter: grayscale(0%);
-}
-
-.team-name {
-    font-size: 1.25rem;
-    font-weight: var(--font-weight-regular);
-    margin-bottom: var(--space-xs);
-    color: var(--color-agua-mist);
-}
-
-.team-role {
-    font-size: 0.75rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-light);
-    margin-bottom: var(--space-md);
-}
-
-.team-bio {
-    font-size: 0.875rem;
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
-    text-align: left;
-    align-self: stretch;
-    color: var(--color-light);
-    font-weight: 200;
-}
-
-.social-links {
-    display: flex;
-    gap: var(--space-md);
-    margin-top: auto;
-    align-self: center;
-}
-
-.social-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid var(--color-agua-mist);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-agua-mist);
-    font-size: 0.75rem;
-    transition: all var(--transition-normal);
-}
-
-.social-icon:hover {
-    background: var(--color-primary);
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-}
-
-/* ============================================
-   EPISODES SECTION - Wide Row Layout
-   ============================================ */
-
-.episodes-section {
-    background: var(--color-offwhite);
-    color: var(--color-text-secondary);
-    padding: var(--space-2xl) var(--container-padding);
-}
-
-.episodes-container {
-    width: 100%;
-    padding-top: var(--space-xl);
-    padding-bottom: var(--space-xl);
-}
-
-.episodes-section .section-title {
-    font-size: 2rem;
-    margin-bottom: var(--space-2xl);
-    color: var(--color-text-secondary);
-}
-
-.episodes-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    width: 100%;
-    padding-top: 1.7rem;
-}
-
-.episode-card {
-    background: var(--color-offwhite);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-primary);
-    overflow: hidden;
-}
-
-.episode-card:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-}
-
-.episode-card-inner {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: var(--space-xl);
-    row-gap: 0;
-    padding: var(--space-lg) var(--space-xl);
-    align-items: flex-start;
-}
-
-.episode-image-wrapper {
-    flex-shrink: 0;
-}
-
-img.episode-artwork {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    display: block;
-}
-
-.episode-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.episode-meta {
-    color: var(--color-accent);
-    font-size: 0.85em;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 0;
-    margin: 0 0 1.2rem 0;
-}
-
-.episode-meta span::after {
-    content: ' //';
-    margin: 0 3px 0 6px;
-}
-
-.episode-meta span:last-child::after {
-    content: '';
-    margin: 0;
-}
-
-.episode-date {
-    color: var(--color-accent);
-    font-weight: 500;
-    font-size: 0.85em;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 0;
-    margin: 0 0 1.2rem 0;
-}
-
-.episode-duration {
-    color: var(--color-accent);
-    font-weight: 500;
-    font-size: 0.85em;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 0;
-    margin: 0 0 1.2rem 0;
-}
-
-.episode-title {
-    font-size: 1.4rem;
-    letter-spacing: 0;
-    margin: 0 0 1.25rem 0;
-    text-transform: none;
-}
-
-.episode-icon {
-    color: var(--color-text);
-    font-size: 0.9rem;
-}
-
-.episode-description {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--color-primary);
-    margin: 0 0 var(--space-md) 0;
-    padding-bottom: 20px;
-}
-
-.episode-footer {
-    display: flex;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
-    margin-top: auto;
-}
-
-.episode-btn {
-    flex: 0 0 auto;
-    min-width: 130px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid;
-    font-size: 0.7rem;
-    font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all var(--transition-normal);
-}
-
-.episode-btn-spotify {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-light);
-}
-
-.episode-btn-spotify:hover {
-    background: transparent;
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-}
-
-.episode-btn-apple {
-    background: transparent;
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-}
-
-.episode-btn-apple:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-light);
-}
-
-/* ============================================
-   CONTACT SECTION - Clean Swiss Design
-   ============================================ */
-
+/* Whole contact section background and padding */
 .contact-section {
     background: var(--color-morning-snow);
     color: var(--color-primary);
     padding: var(--space-2xl) var(--container-padding);
 }
 
+/* Container to center contact content */
 .contact-container {
     width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
     padding-top: var(--space-xl);
     padding-bottom: var(--space-xl);
 }
 
+/* Two-column grid for contact copy + form */
 .contact-grid {
     width: 100%;
     display: grid;
@@ -779,20 +464,30 @@ img.episode-artwork {
     align-items: flex-start;
 }
 
-.contact-header {
+/* Left column contact blurb */
+.contact-info {
     grid-column: 1 / 5;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-primary);
+    margin-top: var(--space-lg);
+    width: 100%;
+    max-width: 28rem;
 }
 
-.contact-title {
-    font-size: 3.5rem;
-    font-weight: var(--font-weight-bold);
-    line-height: 1.15;
-    margin: 0;
-    border: none;
-    padding: 0;
-    color: var(--color-black-kite);
+.contact-info p {
+    margin: 0 0 var(--space-md) 0;
+    color: var(--color-primary);
+    font-weight: 400;
 }
 
+/* Highlight email address */
+.contact-info strong {
+    color: var(--color-toxic-orange);
+    font-weight: 600;
+}
+
+/* Right column contact form wrapper */
 .contact-form {
     grid-column: 5 / 13;
     display: flex;
@@ -804,12 +499,14 @@ img.episode-artwork {
     position: relative;
 }
 
+/* Each label + input/textarea pair */
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
+/* Form labels (small uppercase) */
 .form-group label {
     font-size: 0.65rem;
     font-weight: 700;
@@ -820,6 +517,7 @@ img.episode-artwork {
     margin-bottom: 4px;
 }
 
+/* Text inputs + textarea baseline styles */
 .form-group input,
 .form-group textarea {
     padding: 12px 0;
@@ -833,11 +531,13 @@ img.episode-artwork {
     outline: none;
 }
 
+/* Placeholder text color */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: #999999;
 }
 
+/* Focus state for form fields */
 .form-group input:focus,
 .form-group textarea:focus {
     border-bottom-color: var(--color-toxic-orange);
@@ -845,12 +545,14 @@ img.episode-artwork {
     padding-bottom: 11px;
 }
 
+/* Allow textarea to grow; keep same font as inputs */
 .form-group textarea {
     resize: vertical;
     min-height: 100px;
     font-family: var(--font-base);
 }
 
+/* Footer row under the fields (captcha + button + message) */
 .form-footer {
     display: flex;
     flex-direction: column;
@@ -858,6 +560,7 @@ img.episode-artwork {
     margin-top: 20px;
 }
 
+/* Submit button styling */
 .contact-btn {
     align-self: flex-start;
     display: inline-flex;
@@ -877,15 +580,18 @@ img.episode-artwork {
     transition: background-color var(--transition-fast);
 }
 
+/* Button hover state */
 .contact-btn:hover {
     background: var(--color-black-kite);
 }
 
+/* Disabled state for button (while submitting) */
 .contact-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
+/* Message area (success / error copy) */
 .form-message {
     font-size: 0.875rem;
     font-weight: 500;
@@ -894,51 +600,36 @@ img.episode-artwork {
     letter-spacing: 0.02em;
 }
 
+/* Shown state of form message */
 .form-message.show {
     opacity: 1;
 }
 
-.form-message.success {
-    color: var(--color-toxic-orange);
-}
-
+/* Both success and error use accent color for now */
+.form-message.success,
 .form-message.error {
     color: var(--color-toxic-orange);
 }
 
-.contact-info {
-    grid-column: 1 / 5;
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: var(--color-primary);
-    margin-top: var(--space-lg);
-    width: 50%;
-}
-
-.contact-info p {
-    margin: 0 0 var(--space-md) 0;
-    color: var(--color-primary);
-    font-weight: 400;
-}
-
-.contact-info strong {
-    color: var(--color-toxic-orange);
-    font-weight: 600;
-}
 
 /* ============================================
    FOOTER
    ============================================ */
 
+/* Footer background + padding */
 footer {
     background: var(--color-light);
     padding: var(--space-xl) var(--container-padding);
 }
 
+/* Footer container centered to content width */
 .footer-inner {
     width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
 }
 
+/* Footer grid layout */
 .footer-content {
     display: grid;
     grid-template-columns: repeat(var(--grid-columns), 1fr);
@@ -947,16 +638,19 @@ footer {
     color: var(--color-primary);
 }
 
+/* Left side copyright text */
 #footer-copyright {
     grid-column: 1 / 5;
     opacity: 0.85;
 }
 
+/* Right side “Designed by” copy */
 .footer-content>div:last-child {
     grid-column: 1 / 5;
     opacity: 0.85;
 }
 
+/* Footer links (designer link) */
 .footer-content a {
     color: var(--color-primary);
     text-decoration: underline;
@@ -968,20 +662,43 @@ footer {
     opacity: 0.7;
 }
 
+
 /* ============================================
-   RESPONSIVE DESIGN - TABLET (1024px - 769px)
+   RESPONSIVE DESIGN - TABLET (<= 1024px)
    ============================================ */
 
 @media (max-width: 1024px) {
+
+    /* Reduce side padding and section spacing on tablet */
     :root {
         --container-padding: 40px;
         --space-2xl: 40px;
     }
 
-    .contact-header {
-        grid-column: 1 / 7;
+    /* Allow full width containers on tablet */
+    .navbar-container,
+    .hero-container,
+    .contact-container,
+    .footer-inner {
+        max-width: none;
     }
 
+    /* Give brand more space on tablet nav */
+    .navbar-brand {
+        grid-column: 1 / 6;
+    }
+
+    /* Nav links take the rest of the row */
+    .navbar-nav {
+        grid-column: 6 / 13;
+    }
+
+    /* Hero content stretches a bit more */
+    .hero-main {
+        grid-column: 1 / 8;
+    }
+
+    /* Contact layout collapses form underneath text */
     .contact-form {
         grid-column: 1 / 13;
         margin-top: var(--space-lg);
@@ -990,34 +707,29 @@ footer {
     .contact-info {
         grid-column: 1 / 7;
         margin-top: var(--space-xl);
-    }
-
-    .about-description {
-        grid-column: 1 / 13;
-        margin-bottom: var(--space-lg);
-    }
-
-    .team-grid {
-        grid-column: 1 / 13;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-lg);
+        max-width: none;
     }
 }
 
+
 /* ============================================
-   RESPONSIVE DESIGN - MOBILE/TABLET (768px)
+   RESPONSIVE DESIGN - MOBILE/TABLET (<= 768px)
    ============================================ */
 
 @media (max-width: 768px) {
+
+    /* Smaller padding on mobile/tablet */
     :root {
-        --container-padding: 40px;
+        --container-padding: 24px;
         --space-2xl: 40px;
     }
 
+    /* Add bottom padding so fixed nav doesn't cover content */
     body {
         padding-bottom: 70px;
     }
 
+    /* Move navbar to bottom on small screens */
     .navbar {
         position: fixed;
         bottom: 0;
@@ -1028,9 +740,9 @@ footer {
         padding: 10px var(--container-padding);
         border-bottom: none;
         border-top: 1px solid var(--color-border);
-        sticky: none;
     }
 
+    /* Stack nav contents vertically */
     .navbar-container {
         grid-template-columns: 1fr;
         gap: 0;
@@ -1038,16 +750,17 @@ footer {
 
     .navbar-brand {
         grid-column: 1;
-        display: none;
+        justify-content: center;
     }
 
     .navbar-nav {
         grid-column: 1;
         justify-content: center;
-        gap: 48px;
-        margin: 0;
+        gap: 32px;
+        margin-top: 8px;
     }
 
+    /* Make nav items icon-over-text on mobile */
     .nav-link {
         font-size: 0.65rem;
         display: flex;
@@ -1061,102 +774,59 @@ footer {
         font-size: 1.25rem;
     }
 
-    .nav-link span {
-        display: block;
-    }
-
+    /* Remove nav underline animation on mobile */
     .nav-link::after {
         display: none;
     }
 
+    /* Hero takes full viewport height on mobile */
     .hero-section {
-        min-height: 60vh;
+        min-height: 100vh;
+        background:
+            linear-gradient(180deg,
+                rgba(53, 30, 28, 0.92) 0%,
+                rgba(53, 30, 28, 0.85) 42%,
+                rgba(53, 30, 28, 0.55) 70%,
+                rgba(53, 30, 28, 0.18) 100%),
+            url('./public/hero-bg.png') center bottom / cover no-repeat;
         padding: var(--space-2xl) var(--container-padding);
     }
 
+    /* Hero content becomes one column on mobile */
     .hero-container {
         grid-template-columns: 1fr;
+        row-gap: var(--space-xl);
+        align-items: end;
     }
 
-    .hero-content {
+    .hero-main {
         grid-column: 1;
     }
 
+    /* Two-column grid for streaming buttons instead of four */
     .button-group {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .cta-container {
-        grid-template-columns: repeat(12, 1fr);
-        gap: var(--grid-gap);
-    }
-
-    .cta-artwork {
-        grid-column: 1 / 3;
-        margin-bottom: 0;
-    }
-
-    .cta-content {
-        grid-column: 3 / 13;
-        padding-left: var(--space-lg);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
-
-    .cta-button-wrapper {
-        grid-column: 3 / 9;
-        justify-content: flex-start;
-        display: flex;
-        align-items: center;
-        margin-top: var(--space-md);
-    }
-
-    .cta-btn {
-        padding: 10px 12px;
-        font-size: 0.65rem;
-    }
-
-    .about-section,
-    .episodes-section,
+    /* Contact section uses narrower padding */
     .contact-section {
         padding: var(--space-2xl) var(--container-padding);
     }
 
-    .about-grid {
+    .contact-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-2xl);
-    }
-
-    .about-description {
-        grid-column: 1;
-    }
-
-    .team-grid {
-        grid-column: 1;
-        grid-template-columns: 1fr;
-    }
-
-    .contact-header {
-        grid-column: 1;
-    }
-
-    .contact-title {
-        font-size: 2.5rem;
-    }
-
-    .contact-form {
-        grid-column: 1;
-        margin-top: 0;
     }
 
     .contact-info {
         grid-column: 1;
-        margin-top: var(--space-lg);
-        font-size: 1rem;
-        width: 80vw;
+        width: 100%;
     }
 
+    .contact-form {
+        grid-column: 1;
+    }
+
+    /* Footer padding + layout adjustments */
     footer {
         padding: var(--space-lg) var(--container-padding);
     }
@@ -1169,40 +839,29 @@ footer {
     .footer-content>div:last-child {
         grid-column: 1;
     }
-
-    .episodes-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .episode-card-inner {
-        grid-template-columns: 1fr;
-        row-gap: var(--space-md);
-        padding: var(--space-md) var(--space-lg);
-    }
-
-    img.episode-artwork {
-        width: 100%;
-        max-width: 260px;
-        height: auto;
-    }
 }
 
+
 /* ============================================
-   RESPONSIVE DESIGN - MOBILE (under 480px)
+   RESPONSIVE DESIGN - SMALL MOBILE (<= 480px)
    ============================================ */
 
 @media (max-width: 480px) {
+
+    /* Tightest padding on very small screens */
     :root {
         --container-padding: 20px;
         --grid-gap: 16px;
         --space-2xl: 24px;
     }
 
+    /* Add top padding so content isn't hidden behind top of viewport */
     body {
         padding-top: 50px;
         padding-bottom: 70px;
     }
 
+    /* Slightly smaller headings on small phones */
     h1 {
         font-size: 1.75rem;
     }
@@ -1211,55 +870,8 @@ footer {
         font-size: 1.35rem;
     }
 
-    .description-content .section-title {
-        font-size: 2rem;
-        font-weight: var(--font-weight-regular);
-        margin-bottom: var(--space-sm);
-    }
-
-    .navbar-container {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
     .navbar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: auto;
-        width: 100%;
         padding: 10px var(--container-padding);
-        border-bottom: none;
-        border-top: 1px solid var(--color-border);
-    }
-
-    .navbar::before {
-        content: 'Right Quick Podcast';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        padding: 12px var(--container-padding);
-        background: var(--color-agua-mist);
-        border-bottom: 1px solid var(--color-border);
-        z-index: 999;
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--color-black-kite);
-    }
-
-    .navbar-brand {
-        grid-column: 1;
-        display: none;
-    }
-
-    .navbar-nav {
-        grid-column: 1;
-        justify-content: center;
-        gap: 48px;
-        margin: 0;
     }
 
     .nav-link {
@@ -1272,14 +884,32 @@ footer {
         font-size: 1.1rem;
     }
 
+    /* Keep hero full-height on very small devices */
     .hero-section {
-        min-height: 50vh;
+        min-height: 100vh;
+    }
+
+    /* Tighter spacing in hero heading row */
+    .hero-heading {
+        gap: var(--space-sm);
+    }
+
+    .hero-album-art {
+        width: 44px;
+        height: 44px;
     }
 
     .featured-label {
-        font-size: 0.625rem;
+        font-size: 1.75rem;
     }
 
+    /* Adjust tagline size + width for small screens */
+    .hero-deck {
+        font-size: 1.125rem;
+        max-width: 100%;
+    }
+
+    /* Button grid: two per row, smaller padding */
     .button-group {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-xs);
@@ -1289,42 +919,9 @@ footer {
         padding: 8px 6px;
     }
 
-    .cta-section {
-        padding: var(--space-sm) var(--container-padding);
-    }
-
-    .cta-content {
-        grid-column: 6 / 13;
-    }
-
-    .cta-album-art {
-        width: 96px;
-        margin-top: var(--space-lg);
-    }
-
-    .cta-title {
-        font-size: 1.25rem;
-    }
-
-    .cta-button-wrapper {
-        grid-column: 7 / 13;
-        margin-top: -6vh;
-    }
-
-    .cta-subtitle {
-        font-size: 0.8rem;
-    }
-
-    .about-section {
-        padding: var(--space-2xl) var(--space-md);
-    }
-
+    /* Contact section + form spacing tweaks */
     .contact-section {
         padding: var(--space-lg);
-    }
-
-    .contact-title {
-        font-size: 1.875rem;
     }
 
     .section-heading {
@@ -1335,6 +932,7 @@ footer {
         width: 80px;
     }
 
+    /* Prevent zoom on iOS when focusing inputs */
     .form-group input,
     .form-group textarea {
         font-size: 16px;
@@ -1347,53 +945,6 @@ footer {
 
     .contact-info {
         font-size: 0.9375rem;
-    }
-
-    img.episode-artwork {
-        width: 128px;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    .episodes-section {
-        padding: var(--space-xl) var(--space-lg);
-    }
-
-    .episodes-section .section-title {
-        font-size: 1.5rem;
-        margin-bottom: var(--space-lg);
-    }
-
-    .episode-card-inner {
-        grid-template-columns: 1fr;
-        row-gap: var(--space-md);
-        padding: var(--space-md) var(--space-lg);
-        text-align: center;
-    }
-
-    .episode-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center
-    }
-
-    .episode-title {
-        font-size: 1rem;
-    }
-
-    .episode-description {
-        font-size: 0.8125rem;
-        text-align: left;
-    }
-
-    .episode-btn {
-        min-width: 110px;
-        padding: 8px 10px;
-        font-size: 0.65rem;
-    }
-
-    .episode-footer {
-        justify-content: center;
     }
 
     footer {
