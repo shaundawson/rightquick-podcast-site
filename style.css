@@ -350,7 +350,7 @@ a:hover {
 /* Emphasized part of the tagline (Swiss-style bold) */
 .hero-deck strong {
     color: var(--color-light);
-    font-weight: 700;
+    font-weight: 500;
 }
 
 /* Small cover art icon next to "Featured Episode" */
@@ -857,7 +857,7 @@ footer {
 
     /* Add top padding so content isn't hidden behind top of viewport */
     body {
-        padding-top: 50px;
+        padding-top: 0px;
         padding-bottom: 70px;
     }
 
