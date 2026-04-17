@@ -903,8 +903,16 @@ textarea {
         font-size: clamp(3.4rem, 17vw, 5.2rem);
     }
 
+    .hero__headline {
+        margin-top: var(--space-3);
+    }
+
     .hero__descriptor {
         max-width: 28ch;
+    }
+
+    .hero__eyebrow {
+        margin-top: var(--space-10);
     }
 
     .section {
