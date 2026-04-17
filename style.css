@@ -1,957 +1,969 @@
-/* ============================================
-   RIGHT QUICK PODCAST - GLOBAL RESET & BASE
-   ============================================ */
+/* RIGHT QUICK —
+   Fonts: Cabinet Grotesk + Satoshi
+   Palette: black / white / gray / Spotify green 
+*/
 
-/* Basic reset so all browsers start from the same point */
-* {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Global HTML behavior (smooth scroll, base font size) */
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-/* Base body styles (background, default text, font stack) */
-body {
-    margin: 0;
-    background: #F5F4ED;
-    color: #351E1C;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    font-weight: 400;
-    letter-spacing: -0.3px;
-}
-
-
-/* ============================================
-   DESIGN TOKENS (SPACING, COLORS, FONTS)
-   ============================================ */
-
-/* CSS variables used across the site for consistent design */
 :root {
-    /* Grid + layout */
-    --grid-columns: 12;
-    --grid-gap: 24px;
-    --container-padding: 120px;
-    --content-max-width: 1280px;
+    --font-display: "Cabinet Grotesk", system-ui, sans-serif;
+    --font-body: "Satoshi", system-ui, sans-serif;
 
-    /* Brand color palette */
-    --color-morning-snow: #F5F4ED;
-    --color-amazon-mist: #ECECDC;
-    --color-agua-mist: #A0C9CB;
-    --color-black-kite: #351E1C;
-    --color-garnet: #733635;
-    --color-toxic-orange: #FF6037;
+    --bg: #111111;
+    --hero-image: url("./public/hero-bg.png");
+    --surface: #0b0b0b;
+    --surface-2: #111111;
+    --line: #1f1f1f;
+    --line-soft: #171717;
+    --text: #f6f6f6;
+    --text-muted: #b3b3b3;
+    --text-soft: #7a7a7a;
+    --accent: #1db954;
 
-    /* Semantic color aliases (used in components) */
-    --color-primary: #351E1C;
-    --color-accent: #FF6037;
-    --color-navbar: #A0C9CB;
-    --color-light: #F5F4ED;
-    --color-muted: #B8B8B8;
-    --color-border: #ECECDC;
-    --color-text: #351E1C;
-    --color-text-secondary: #B8B8B8;
-    --color-offwhite: #F5F5F5;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
 
-    /* Font weights + base stack variable */
-    --font-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-    --font-weight-regular: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
+    --text-xs: 0.72rem;
+    --text-sm: 0.85rem;
+    --text-base: 1rem;
+    --text-md: 1.1rem;
+    --text-lg: 1.35rem;
+    --text-xl: 1.9rem;
+    --text-2xl: 2.8rem;
+    --text-hero: clamp(4rem, 6vw, 6.5rem);
 
-    /* Spacing scale (4–8px multiples) */
-    --space-xs: 8px;
-    --space-sm: 12px;
-    --space-md: 16px;
-    --space-lg: 24px;
-    --space-xl: 32px;
-    --space-2xl: 60px;
+    --page-max: 1280px;
+    --page-pad: clamp(1.25rem, 3vw, 2.75rem);
 
-    /* Font sizes (tokens instead of hard-coded values) */
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 2rem;
-    --font-size-4xl: 2.5rem;
-
-    /* Corner radii (for cards, buttons, etc.) */
     --radius-sm: 4px;
     --radius-md: 8px;
+    --radius-lg: 12px;
 
-    /* Transition timings */
-    --transition-fast: 150ms ease-out;
-    --transition-normal: 250ms ease-out;
-
-    /* Focus styles (for accessibility) */
-    --focus-ring: 0 0 0 3px rgba(255, 96, 55, 0.2);
-    --focus-outline: 2px solid #FF6037;
+    --transition-fast: 160ms ease-out;
 }
 
-
-/* ============================================
-   TYPOGRAPHY BASICS
-   ============================================ */
-
-/* Heading styles (H1–H6 share same base style) */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-    font-weight: var(--font-weight-bold);
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-    color: var(--color-primary);
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
 }
 
-/* Specific heading sizes */
-h1 {
-    font-size: 2.5rem;
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-h2 {
-    font-size: 2rem;
+img,
+picture,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
-h3 {
-    font-size: 1.5rem;
-}
-
-/* Default paragraph spacing */
-p {
-    margin: 0 0 var(--space-lg) 0;
-}
-
-/* Link styles (accent color + hover change) */
 a {
-    color: var(--color-accent);
+    color: inherit;
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition:
+        color var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        opacity var(--transition-fast),
+        transform var(--transition-fast);
 }
 
-a:hover {
-    color: var(--color-agua-mist);
+button,
+input,
+textarea {
+    font: inherit;
+    color: inherit;
 }
 
-
-/* ============================================
-   SHARED SECTION HEADER (USED IN CONTACT)
-   ============================================ */
-
-/* Wrapper for section titles */
-.section-header {
-    width: 100%;
-    margin-bottom: 24px;
-    padding-bottom: 4px;
-    border-bottom: 2px solid rgba(38, 38, 38, 0.1);
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
-/* Main section heading style */
-.section-heading {
-    position: relative;
-    display: inline-block;
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0;
-    padding-bottom: var(--space-sm);
+::selection {
+    background: rgba(29, 185, 84, 0.25);
+    color: var(--text);
 }
 
-.section-heading span {
-    display: inline-block;
-}
-
-/* Highlighted word inside heading */
-.section-heading em {
-    font-style: normal;
-    color: var(--color-accent);
-}
-
-/* Accent underline under heading */
-.section-heading::after {
-    content: "";
+.skip-link {
     position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 260px;
-    height: 2px;
-    background: var(--color-accent);
+    left: var(--page-pad);
+    top: -120px;
+    z-index: 9999;
+    background: var(--text);
+    color: var(--bg);
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
 }
 
+.skip-link:focus {
+    top: 1rem;
+}
 
-/* ============================================
-   NAVBAR
-   ============================================ */
+/* NAV */
 
-/* Top navigation bar (background + sticky positioning) */
 .navbar {
-    background: var(--color-agua-mist);
-    border-bottom: 1px solid var(--color-border);
-    padding: 12px var(--container-padding);
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%;
+    background: #111;
 }
 
-/* Grid container for nav contents, centered on the page */
 .navbar-container {
-    width: 100%;
-    max-width: var(--content-max-width);
+    max-width: var(--page-max);
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    gap: var(--grid-gap);
-    align-items: center;
-}
-
-/* Brand area (headphones icon + title) */
-.navbar-brand {
-    grid-column: 1 / 5;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--color-black-kite);
+    padding-top: 0.9rem;
+    padding-right: var(--page-pad);
+    padding-bottom: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    text-decoration: none;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--text);
 }
 
 .navbar-brand:hover {
-    color: var(--color-accent);
+    color: var(--accent);
 }
 
-/* Right side nav links (Patreon + Contact) */
 .navbar-nav {
-    grid-column: 9 / 13;
-    display: flex;
-    gap: 32px;
     list-style: none;
-    justify-content: flex-end;
+    display: flex;
     align-items: center;
+    gap: 0.35rem;
 }
 
-/* Individual nav link styling */
 .nav-link {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-black-kite);
-    position: relative;
-    padding: 8px 0;
-    transition: color var(--transition-fast);
-    display: flex;
+    min-height: 40px;
+    display: inline-flex;
     align-items: center;
-    gap: 4px;
+    padding: 0.6rem 0.85rem;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
 }
 
 .nav-link:hover {
-    color: var(--color-accent);
+    color: var(--text);
 }
 
-/* Underline animation on nav links */
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--color-accent);
-    transition: width var(--transition-normal);
+.nav-link--cta {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
 }
 
-.nav-link:hover::after {
-    width: 100%;
+.nav-link--cta:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
 }
 
+/* HERO */
 
-/* ============================================
-   HERO SECTION (FULL SCREEN ABOVE THE FOLD)
-   ============================================ */
 
-/* Full-screen hero background + gradient over image */
-.hero-section {
-    background:
-        linear-gradient(90deg,
-            var(--color-primary) 0%,
-            var(--color-primary) 42%,
-            rgba(53, 30, 28, 0.88) 58%,
-            rgba(53, 30, 28, 0.56) 74%,
-            rgba(53, 30, 28, 0.18) 88%,
-            rgba(53, 30, 28, 0) 100%),
-        url('./public/hero-bg.png') right bottom / contain no-repeat;
-    background-color: var(--color-primary);
-    /* subtract navbar height so hero + nav roughly fill viewport */
-    min-height: calc(100vh - 69px);
-    display: flex;
-    align-items: center;
-    padding: var(--space-xl) var(--container-padding);
-    border-bottom: 1px solid var(--color-border);
+
+.hero {
+    position: relative;
     overflow: hidden;
+    isolation: isolate;
+    padding: var(--space-4) var(--page-pad) var(--space-4);
+    background: var(--bg);
+    border-bottom: 1px solid var(--line-soft);
 }
 
-/* Grid container for hero content */
-.hero-container {
-    width: 100%;
-    max-width: var(--content-max-width);
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.58) 42%, rgba(0, 0, 0, 0.84) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.46) 40%, rgba(0, 0, 0, 0.62) 100%),
+        url("./public/hero-bg.png") 76% 28% / 76% auto no-repeat;
+    z-index: -1;
+}
+
+
+.hero__inner {
+    max-width: var(--page-max);
     margin: 0 auto;
+    min-height: calc(100vh - 118px);
     display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    gap: var(--grid-gap);
-    align-items: end;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    align-items: stretch;
 }
 
-/* Left hero column (tagline + title + player + buttons) */
-.hero-main {
-    grid-column: 1 / 7;
-    color: var(--color-light);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 860px;
+.hero__inner,
+.hero__bottom-rule {
+    position: relative;
+    z-index: 1;
 }
 
-/* Row containing cover art and "Featured Episode" text */
-.hero-heading {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-sm);
+.hero__text {
+    grid-column: 1 / 6;
+    display: grid;
+    align-content: center;
+    padding-top: clamp(6rem, 18vh, 15rem);
+    padding-bottom: var(--space-8);
 }
 
-/* Hero tagline / deck line above the player */
-.hero-deck {
-    margin: 0 0 var(--space-2xl) 0;
-    color: var(--color-agua-mist);
-    font-size: 1.5rem;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    max-width: 30ch;
-    /* limit text width for a strong block of copy */
-    text-wrap: balance;
-    /* nicer line breaks in modern browsers */
-}
-
-/* Emphasized part of the tagline (Swiss-style bold) */
-.hero-deck strong {
-    color: var(--color-light);
+.hero__eyebrow {
+    font-size: var(--text-xs);
     font-weight: 500;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    margin-bottom: var(--space-10);
 }
 
-/* Small cover art icon next to "Featured Episode" */
-.hero-album-art {
-    width: 56px;
-    height: 56px;
+/* More Swiss, more legible hero wordmark */
+.hero__headline {
+    margin-bottom: var(--space-4);
+}
+
+.hero__headline-line {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    line-height: 0.7;
+    letter-spacing: -0.08em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.hero__headline-line+.hero__headline-line {
+    margin-top: 0.1em;
+}
+
+.hero__descriptor {
+    max-width: 26ch;
+    font-size: clamp(1rem, 0.28vw + 0.95rem, 1.18rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin-bottom: var(--space-8);
+}
+
+.hero__descriptor em {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.hero__listen-block {
+    display: grid;
+    row-gap: var(--space-3);
+    max-width: 32rem;
+}
+
+.hero__listen-label {
+    font-size: var(--text-xs);
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+}
+
+.hero__platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.hero__platform-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.hero__platform-link:hover {
+    color: var(--accent);
+}
+
+.hero__platform-divider {
+    color: var(--text-soft);
+    font-size: var(--text-sm);
+}
+
+/* HERO MEDIA */
+
+.hero__media {
+    grid-column: 7 / 13;
+    display: grid;
+    align-content: center;
+    padding-top: clamp(6rem, 18vh, 15rem);
+    padding-bottom: var(--space-8);
+}
+
+.episode-card {
+    width: min(100%, 600px);
+    display: grid;
+    row-gap: var(--space-4);
+}
+
+.episode-card__body {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+}
+
+.episode-card__art {
+    width: 92px;
+    height: 92px;
     object-fit: cover;
     border-radius: var(--radius-md);
-    display: block;
-    flex-shrink: 0;
 }
 
-/* "Featured Episode" label styling */
-.featured-label {
-    font-size: 2.5rem;
-    font-weight: 300;
-    letter-spacing: -0.05em;
-    color: var(--color-offwhite);
-    margin: 0;
-}
-
-/* Wrap for Audioboom player embed */
-.player-section {
-    margin-bottom: var(--space-lg);
-}
-
-/* Force player to full width and rounded corners */
-.player-section iframe {
-    width: 100% !important;
-    height: 95px !important;
-    border-radius: var(--radius-sm);
-}
-
-/* "Listen On" label above streaming buttons */
-.listen-label {
-    font-size: 0.65rem;
-    font-weight: var(--font-weight-regular);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--color-agua-mist);
-    margin-bottom: var(--space-md);
-}
-
-/* Grid layout for the four platform buttons */
-.button-group {
+.episode-card__copy {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
+    row-gap: 0.5rem;
+    padding-top: 0.1rem;
 }
 
-/* Shared styles for each platform button */
-.btn-stream {
-    border: 1.5px solid var(--color-light);
-    background: transparent;
-    color: var(--color-light);
-    padding: 12px 16px;
-    font-size: 0.7rem;
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all var(--transition-normal);
-}
-
-/* Hover state for streaming buttons */
-.btn-stream:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-primary);
-    transform: translateY(-2px);
-}
-
-/* First button (Spotify) appears as primary by default */
-.btn-stream:first-of-type {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-primary);
-}
-
-
-/* ============================================
-   CONTACT SECTION
-   ============================================ */
-
-/* Whole contact section background and padding */
-.contact-section {
-    background: var(--color-morning-snow);
-    color: var(--color-primary);
-    padding: var(--space-2xl) var(--container-padding);
-}
-
-/* Container to center contact content */
-.contact-container {
-    width: 100%;
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding-top: var(--space-xl);
-    padding-bottom: var(--space-xl);
-}
-
-/* Two-column grid for contact copy + form */
-.contact-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    gap: var(--grid-gap);
-    align-items: flex-start;
-}
-
-/* Left column contact blurb */
-.contact-info {
-    grid-column: 1 / 5;
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: var(--color-primary);
-    margin-top: var(--space-lg);
-    width: 100%;
-    max-width: 28rem;
-}
-
-.contact-info p {
-    margin: 0 0 var(--space-md) 0;
-    color: var(--color-primary);
-    font-weight: 400;
-}
-
-/* Highlight email address */
-.contact-info strong {
-    color: var(--color-toxic-orange);
-    font-weight: 600;
-}
-
-/* Right column contact form wrapper */
-.contact-form {
-    grid-column: 5 / 13;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    background: transparent;
-    border: none;
-    padding: 0;
-    position: relative;
-}
-
-/* Each label + input/textarea pair */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-/* Form labels (small uppercase) */
-.form-group label {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-black-kite);
-    line-height: 1;
-    margin-bottom: 4px;
-}
-
-/* Text inputs + textarea baseline styles */
-.form-group input,
-.form-group textarea {
-    padding: 12px 0;
-    border: none;
-    border-bottom: 1px solid rgba(38, 38, 38, 0.1);
-    background: transparent;
-    font-size: 1rem;
-    color: var(--color-black-kite);
-    font-family: var(--font-base);
-    transition: border-color var(--transition-fast);
-    outline: none;
-}
-
-/* Placeholder text color */
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #999999;
-}
-
-/* Focus state for form fields */
-.form-group input:focus,
-.form-group textarea:focus {
-    border-bottom-color: var(--color-toxic-orange);
-    border-bottom-width: 2px;
-    padding-bottom: 11px;
-}
-
-/* Allow textarea to grow; keep same font as inputs */
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-    font-family: var(--font-base);
-}
-
-/* Footer row under the fields (captcha + button + message) */
-.form-footer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    margin-top: 20px;
-}
-
-/* Submit button styling */
-.contact-btn {
-    align-self: flex-start;
+.episode-card__badge {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 16px 28px;
-    border-radius: 0;
-    background: var(--color-toxic-orange);
-    color: var(--color-morning-snow);
-    font-size: 0.75rem;
+    min-height: 26px;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
-    cursor: pointer;
-    border: none;
-    transition: background-color var(--transition-fast);
+    letter-spacing: 0.16em;
 }
 
-/* Button hover state */
-.contact-btn:hover {
-    background: var(--color-black-kite);
+.episode-card__note {
+    font-size: var(--text-xs);
+    color: var(--text-soft);
+    max-width: 26ch;
 }
 
-/* Disabled state for button (while submitting) */
-.contact-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.hero__player iframe {
+    border-radius: var(--radius-md);
 }
 
-/* Message area (success / error copy) */
-.form-message {
-    font-size: 0.875rem;
+.hero__support {
+    padding-top: 0.2rem;
+}
+
+.hero__support-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: var(--text-xs);
     font-weight: 500;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid var(--line);
 }
 
-/* Shown state of form message */
-.form-message.show {
-    opacity: 1;
+.hero__support-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
-/* Both success and error use accent color for now */
-.form-message.success,
-.form-message.error {
-    color: var(--color-toxic-orange);
+/* HERO FOOT RULE — aligned to hero grid */
+
+.hero__bottom-rule {
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
 }
 
-
-/* ============================================
-   FOOTER
-   ============================================ */
-
-/* Footer background + padding */
-footer {
-    background: var(--color-light);
-    padding: var(--space-xl) var(--container-padding);
-}
-
-/* Footer container centered to content width */
-.footer-inner {
-    width: 100%;
-    max-width: var(--content-max-width);
+.hero__bottom-inner {
+    max-width: var(--page-max);
     margin: 0 auto;
-}
-
-/* Footer grid layout */
-.footer-content {
     display: grid;
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    font-size: 0.8875rem;
-    line-height: 1.7;
-    color: var(--color-primary);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
 }
 
-/* Left side copyright text */
+.hero__bottom-label {
+    font-size: var(--text-xs);
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.hero__bottom-label:nth-child(1) {
+    grid-column: 1 / 6;
+    /* aligns under hero text */
+}
+
+.hero__bottom-label:nth-child(2) {
+    grid-column: 7 / 13;
+    /* aligns under episode card / player */
+}
+
+/* GENERIC SECTION */
+
+.section {
+    padding: var(--space-16) var(--page-pad);
+}
+
+.section__inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    column-gap: var(--space-8);
+    align-items: start;
+}
+
+.section__label-col {
+    padding-top: 0.15rem;
+}
+
+.section__num {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+}
+
+.section__body {
+    display: grid;
+    row-gap: var(--space-4);
+}
+
+.section__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: 0.9;
+    letter-spacing: -0.08em;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.section__heading em {
+    font-style: normal;
+    color: var(--accent);
+}
+
+.section__lead {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+.section__copy {
+    display: grid;
+    row-gap: var(--space-3);
+    max-width: 62ch;
+}
+
+.section__copy p {
+    color: var(--text-muted);
+}
+
+.section__intro {
+    color: var(--text-muted);
+    max-width: 44ch;
+}
+
+/* ABOUT */
+
+.section--about {
+    border-top: 1px solid var(--line-soft);
+}
+
+/* PEOPLE */
+
+.section--hosts {
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.hosts__grid {
+    max-width: var(--page-max);
+    margin: var(--space-8) auto 0;
+    padding-inline: var(--page-pad);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-6);
+}
+
+.host {
+    grid-column: span 4;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: var(--space-4);
+    align-items: start;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+}
+
+.host__index {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    padding-top: 0.2rem;
+}
+
+.host__content {
+    display: grid;
+    row-gap: var(--space-2);
+}
+
+.host__role {
+    font-size: var(--text-xs);
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+.host__name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.host__bio {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    max-width: 32ch;
+}
+
+.host__link {
+    width: fit-content;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid var(--line);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+}
+
+.host__link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* LISTEN */
+
+.section--listen {
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.section__body--listen {
+    row-gap: var(--space-6);
+}
+
+.listen-links {
+    display: grid;
+    row-gap: var(--space-3);
+    max-width: 760px;
+}
+
+.listen-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+}
+
+.listen-link__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2vw, 2.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.listen-link__arrow {
+    color: var(--text-soft);
+    font-size: var(--text-sm);
+}
+
+.listen-link:hover .listen-link__name,
+.listen-link:hover .listen-link__arrow {
+    color: var(--accent);
+}
+
+/* CONTACT */
+
+.section--contact {
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.contact__grid {
+    max-width: var(--page-max);
+    margin: var(--space-8) auto 0;
+    padding-inline: var(--page-pad);
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: var(--space-8);
+    align-items: start;
+}
+
+.contact__info {
+    display: grid;
+    row-gap: var(--space-3);
+    max-width: 34ch;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.contact__info p {
+    color: var(--text-muted);
+}
+
+.contact__info strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.contact-form {
+    display: grid;
+    row-gap: var(--space-5);
+}
+
+.form-group {
+    display: grid;
+    row-gap: var(--space-2);
+}
+
+.form-group label {
+    font-size: var(--text-xs);
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    padding: 0.2rem 0 0.85rem;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-soft);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 7rem;
+}
+
+.form-footer {
+    display: grid;
+    row-gap: var(--space-3);
+}
+
+.contact-btn {
+    width: fit-content;
+    min-height: 46px;
+    padding: 0.85rem 1.4rem;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+}
+
+.contact-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+}
+
+.form-message {
+    min-height: 1.2rem;
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.form-message.success {
+    color: var(--accent);
+}
+
+.form-message.error {
+    color: #ffffff;
+}
+
+/* FOOTER */
+
+.site-footer {
+    border-top: 1px solid var(--line);
+    padding: var(--space-4) var(--page-pad) calc(var(--space-8) + 3.6rem);
+    background: transparent;
+}
+
+.site-footer__inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    align-items: start;
+}
+
+.site-footer__meta {
+    font-size: var(--text-xs);
+    color: var(--text-soft);
+    letter-spacing: 0.18em;
+    line-height: 1.6;
+}
+
 #footer-copyright {
     grid-column: 1 / 5;
-    opacity: 0.85;
 }
 
-/* Right side “Designed by” copy */
-.footer-content>div:last-child {
-    grid-column: 1 / 5;
-    opacity: 0.85;
+.site-footer__meta:last-child {
+    grid-column: 9 / 13;
+    text-align: right;
 }
 
-/* Footer links (designer link) */
-.footer-content a {
-    color: var(--color-primary);
-    text-decoration: underline;
-    font-weight: var(--font-weight-semibold);
-    transition: opacity var(--transition-fast);
+.site-footer a {
+    color: var(--text-muted);
+    border-bottom: 1px solid transparent;
 }
 
-.footer-content a:hover {
-    opacity: 0.7;
+.site-footer a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
 
-/* ============================================
-   RESPONSIVE DESIGN - TABLET (<= 1024px)
-   ============================================ */
 
-@media (max-width: 1024px) {
+/* MOBILE NAV */
 
-    /* Reduce side padding and section spacing on tablet */
-    :root {
-        --container-padding: 40px;
-        --space-2xl: 40px;
-    }
-
-    /* Allow full width containers on tablet */
-    .navbar-container,
-    .hero-container,
-    .contact-container,
-    .footer-inner {
-        max-width: none;
-    }
-
-    /* Give brand more space on tablet nav */
-    .navbar-brand {
-        grid-column: 1 / 6;
-    }
-
-    /* Nav links take the rest of the row */
-    .navbar-nav {
-        grid-column: 6 / 13;
-    }
-
-    /* Hero content stretches a bit more */
-    .hero-main {
-        grid-column: 1 / 8;
-    }
-
-    /* Contact layout collapses form underneath text */
-    .contact-form {
-        grid-column: 1 / 13;
-        margin-top: var(--space-lg);
-    }
-
-    .contact-info {
-        grid-column: 1 / 7;
-        margin-top: var(--space-xl);
-        max-width: none;
-    }
+.mobile-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3.6rem;
+    background: #111;
+    border-top: 1px solid var(--line);
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    padding-inline: var(--space-3);
+    z-index: 1000;
 }
 
+.mobile-nav__link {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+}
 
-/* ============================================
-   RESPONSIVE DESIGN - MOBILE/TABLET (<= 768px)
-   ============================================ */
+.mobile-nav__link:hover {
+    color: var(--accent);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .hero__inner {
+        grid-template-columns: 1fr;
+        row-gap: var(--space-8);
+        min-height: auto;
+    }
+
+    .hero__text,
+    .hero__media {
+        grid-column: auto;
+        padding-top: var(--space-4);
+        padding-bottom: 0;
+    }
+
+    .episode-card {
+        margin-left: 0;
+    }
+
+    .hosts__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .host {
+        grid-column: auto;
+    }
+
+    .contact__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero__bottom-inner {
+        grid-template-columns: 1fr;
+        row-gap: var(--space-2);
+    }
+
+    .hero__bottom-label:nth-child(1),
+    .hero__bottom-label:nth-child(2) {
+        grid-column: auto;
+    }
+}
 
 @media (max-width: 768px) {
-
-    /* Smaller padding on mobile/tablet */
-    :root {
-        --container-padding: 24px;
-        --space-2xl: 40px;
-    }
-
-    /* Add bottom padding so fixed nav doesn't cover content */
     body {
-        padding-bottom: 70px;
+        padding-bottom: 3.6rem;
     }
 
-    /* Move navbar to bottom on small screens */
     .navbar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: auto;
-        width: 100%;
-        padding: 10px var(--container-padding);
-        border-bottom: none;
-        border-top: 1px solid var(--color-border);
-    }
-
-    /* Stack nav contents vertically */
-    .navbar-container {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .navbar-brand {
-        grid-column: 1;
-        justify-content: center;
-    }
-
-    .navbar-nav {
-        grid-column: 1;
-        justify-content: center;
-        gap: 32px;
-        margin-top: 8px;
-    }
-
-    /* Make nav items icon-over-text on mobile */
-    .nav-link {
-        font-size: 0.65rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 0;
-    }
-
-    .nav-link i {
-        font-size: 1.25rem;
-    }
-
-    /* Remove nav underline animation on mobile */
-    .nav-link::after {
         display: none;
     }
 
-    /* Hero takes full viewport height on mobile */
-    .hero-section {
-        min-height: 100vh;
+    .mobile-nav {
+        display: flex;
+    }
+
+    .hero {
+        padding-top: var(--space-8);
+        padding-bottom: var(--space-6);
+    }
+
+    .hero__inner {
+        row-gap: var(--space-6);
+    }
+
+    .hero::before {
         background:
-            linear-gradient(180deg,
-                rgba(53, 30, 28, 0.92) 0%,
-                rgba(53, 30, 28, 0.85) 42%,
-                rgba(53, 30, 28, 0.55) 70%,
-                rgba(53, 30, 28, 0.18) 100%),
-            url('./public/hero-bg.png') center bottom / cover no-repeat;
-        padding: var(--space-2xl) var(--container-padding);
+            linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.74) 38%, rgba(0, 0, 0, 0.52) 72%, rgba(0, 0, 0, 0.86) 100%),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.68) 100%),
+            url("./public/hero-bg.png") 82% 10% / 135% auto no-repeat;
+        opacity: 0.82;
     }
 
-    /* Hero content becomes one column on mobile */
-    .hero-container {
+
+    .hero__headline-line {
+        font-size: clamp(3.4rem, 17vw, 5.2rem);
+    }
+
+    .hero__descriptor {
+        max-width: 28ch;
+    }
+
+    .section {
+        padding: var(--space-10) var(--page-pad);
+    }
+
+    .section__inner {
         grid-template-columns: 1fr;
-        row-gap: var(--space-xl);
-        align-items: end;
+        row-gap: var(--space-4);
     }
 
-    .hero-main {
-        grid-column: 1;
-    }
-
-    /* Two-column grid for streaming buttons instead of four */
-    .button-group {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Contact section uses narrower padding */
-    .contact-section {
-        padding: var(--space-2xl) var(--container-padding);
-    }
-
-    .contact-grid {
+    .hosts__grid {
+        padding-inline: var(--page-pad);
         grid-template-columns: 1fr;
     }
 
-    .contact-info {
-        grid-column: 1;
-        width: 100%;
+    .host {
+        grid-template-columns: 36px 1fr;
     }
 
-    .contact-form {
-        grid-column: 1;
+
+    .site-footer {
+        padding-bottom: var(--space-4);
     }
 
-    /* Footer padding + layout adjustments */
-    footer {
-        padding: var(--space-lg) var(--container-padding);
-    }
-
-    .footer-content {
+    .site-footer__inner {
         grid-template-columns: 1fr;
+        row-gap: var(--space-2);
     }
 
     #footer-copyright,
-    .footer-content>div:last-child {
-        grid-column: 1;
-    }
-}
-
-
-/* ============================================
-   RESPONSIVE DESIGN - SMALL MOBILE (<= 480px)
-   ============================================ */
-
-@media (max-width: 480px) {
-
-    /* Tightest padding on very small screens */
-    :root {
-        --container-padding: 20px;
-        --grid-gap: 16px;
-        --space-2xl: 24px;
+    .site-footer__meta:last-child {
+        grid-column: auto;
+        text-align: left;
     }
 
-    /* Add top padding so content isn't hidden behind top of viewport */
-    body {
-        padding-top: 0px;
-        padding-bottom: 70px;
+    @media (max-width: 480px) {
+        :root {
+            --page-pad: 1.25rem;
+        }
+
+        .episode-card__body {
+            grid-template-columns: 76px 1fr;
+        }
+
+        .episode-card__art {
+            width: 76px;
+            height: 76px;
+        }
     }
 
-    /* Slightly smaller headings on small phones */
-    h1 {
-        font-size: 1.75rem;
-    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
 
-    h2 {
-        font-size: 1.35rem;
+        *,
+        *::before,
+        *::after {
+            transition: none !important;
+        }
     }
-
-    .navbar {
-        padding: 10px var(--container-padding);
-    }
-
-    .nav-link {
-        font-size: 0.6rem;
-        gap: 3px;
-        padding: 6px 0;
-    }
-
-    .nav-link i {
-        font-size: 1.1rem;
-    }
-
-    /* Keep hero full-height on very small devices */
-    .hero-section {
-        min-height: 100vh;
-    }
-
-    /* Tighter spacing in hero heading row */
-    .hero-heading {
-        gap: var(--space-sm);
-    }
-
-    .hero-album-art {
-        width: 44px;
-        height: 44px;
-    }
-
-    .featured-label {
-        font-size: 1.75rem;
-    }
-
-    /* Adjust tagline size + width for small screens */
-    .hero-deck {
-        font-size: 1.125rem;
-        max-width: 100%;
-    }
-
-    /* Button grid: two per row, smaller padding */
-    .button-group {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-xs);
-    }
-
-    .btn-stream {
-        padding: 8px 6px;
-    }
-
-    /* Contact section + form spacing tweaks */
-    .contact-section {
-        padding: var(--space-lg);
-    }
-
-    .section-heading {
-        font-size: 1.25rem;
-    }
-
-    .section-heading::after {
-        width: 80px;
-    }
-
-    /* Prevent zoom on iOS when focusing inputs */
-    .form-group input,
-    .form-group textarea {
-        font-size: 16px;
-    }
-
-    .contact-btn {
-        padding: 10px 20px;
-        font-size: 0.7rem;
-    }
-
-    .contact-info {
-        font-size: 0.9375rem;
-    }
-
-    footer {
-        padding: var(--space-lg);
-    }
-
-    .footer-content {
-        font-size: 0.75rem;
-    }
-}

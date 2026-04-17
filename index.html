@@ -2,209 +2,403 @@
 <html lang="en">
 
 <head>
-    <!-- Google Analytics tag (tracks page views) -->
+    <!-- Load Google Analytics so we can track basic page traffic -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM9ECL185S"></script>
     <script>
+        // Set up the global dataLayer array used by Google Analytics
         window.dataLayer = window.dataLayer || [];
+
+        // Helper function that pushes events into dataLayer
         function gtag() { dataLayer.push(arguments); }
+
+        // Initialize Google Analytics with the current timestamp
         gtag('js', new Date());
+
+        // Tell Google Analytics which property (site) to log data to
         gtag('config', 'G-GM9ECL185S');
     </script>
 
-    <!-- Basic document meta tags -->
+    <!-- Basic document configuration -->
     <meta charset="UTF-8" />
+    <!-- Make the layout adapt to different screen sizes (phones, tablets, desktop) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Right Quick Podcast - Queer, Unfriendly Black Hotties™</title>
+    <!-- Title shown in the browser tab and in search engine results -->
+    <title>Right Quick Podcast — Queer, Unfriendly Black Hotties™</title>
+    <!-- Short description used by search engines and link previews -->
     <meta name="description"
-        content="A bite-sized pop-culture conversation with two queer, unfriendly black hotties. Listen to the latest episodes on Spotify, Apple Podcasts, and more." />
-    <meta name="theme-color" content="#113677" />
+        content="A bite-sized pop-culture conversation with two queer, unfriendly black hotties. Listen on Spotify, Apple Podcasts, and more." />
+    <!-- Browser theme color for mobile address bars, etc. -->
+    <meta name="theme-color" content="#000000" />
 
-    <!-- App config exposed to script.js (Web3Forms key) -->
     <script>
+        // Expose configuration values to the rest of the front-end code.
+        // Right now this only holds the Web3Forms access key for the contact form.
         window.APP_CONFIG = {
             WEB3FORMS_ACCESS_KEY: 'c18bbf17-7942-4ffd-b1e4-fb292022478b'
         };
     </script>
 
-    <!-- Font Awesome icon set (Spotify, Apple, etc.) -->
+    <!-- Preconnect tells the browser to open a connection early to the font CDN for faster font loading -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <!-- Load the two main fonts used on this site: Cabinet Grotesk (display) and Satoshi (body) -->
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@300,400,500,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome icon set (used for social/platform icons if needed) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Main site stylesheet -->
+    <!-- Main stylesheet for all layout and visual styles -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- EmailJS (if you decide to send email directly from the form) -->
+    <!-- EmailJS library (currently not used directly, but available if we want to send email from the front end) -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
 </head>
 
 <body>
-    <!-- ==========================================
-         NAVBAR (SITE HEADER)
-         ========================================== -->
+    <!-- Accessibility helper: lets keyboard users jump straight to the main content -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <!-- Primary desktop navigation bar -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar-container">
-            <!-- Brand: scrolls back to hero when clicked -->
-            <div class="navbar-brand">
-                <i class="fa fa-headphones" aria-hidden="true"></i>
-                <span>Right Quick Podcast</span>
-            </div>
+            <!-- Brand link: clicking this scrolls the user back up to the hero section -->
+            <a href="#hero-section" class="navbar-brand" aria-label="Right Quick Podcast — go to top">
+                Right Quick
+            </a>
 
-            <!-- Right-side nav links (Patreon + Contact) -->
+            <!-- Main navigation links for the top of the page -->
             <ul class="navbar-nav">
+                <li><a class="nav-link" href="#about">About</a></li>
+                <li><a class="nav-link" href="#hosts">People</a></li>
                 <li>
+                    <!-- Link out to Patreon opens in a new tab -->
                     <a class="nav-link" href="https://patreon.com/cw/theyagenda" target="_blank"
                         rel="noopener noreferrer">
-                        <i class="fab fa-patreon" aria-hidden="true"></i>
-                        <span>Join On Patreon</span>
+                        Patreon
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#contact">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span>Contact</span>
+                    <!-- “Contact” is styled as the primary call-to-action in the nav -->
+                    <a class="nav-link nav-link--cta" href="#contact">
+                        Contact
                     </a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- ==========================================
-         HERO SECTION (FEATURED EPISODE)
-         ========================================== -->
-    <section id="hero-section" class="hero-section" aria-label="Featured episode">
-        <div class="hero-container">
-            <div class="hero-main">
-                <!-- Tagline / deck above the episode player -->
-                <p class="hero-deck">
-                    Queer, <strong>unfriendly Black hotties™</strong> talking culture, mess, and moments that matter.
-                </p>
+    <!-- Main content wrapper (everything between nav and footer) -->
+    <main id="main-content">
 
-                <!-- Cover art + "Featured Episode" text -->
-                <div class="hero-heading">
-                    <img src="./public/artwork.png" alt="Right Quick podcast cover art" class="hero-album-art">
-                    <span class="featured-label">Featured Episode</span>
+        <!-- HERO: featured episode + core brand statement -->
+        <section id="hero-section" class="hero" aria-label="Featured episode">
+            <div class="hero__inner">
+                <!-- Left column: big title and quick explanation of the show -->
+                <div class="hero__text">
+                    <!-- Small line of context above the main title -->
+                    <p class="hero__eyebrow">Culture · Commentary · Black Queer Life</p>
+
+                    <!-- Main site title, split over two lines for a poster-style layout -->
+                    <h1 class="hero__headline">
+                        <span class="hero__headline-line">Right</span>
+                        <span class="hero__headline-line">Quick</span>
+                    </h1>
+
+                    <!-- Short tagline explaining what the podcast actually is -->
+                    <p class="hero__descriptor">
+                        A bite-sized pop-culture conversation with two Queer, <em>unfriendly</em> Black hotties™
+                    </p>
+
+                    <!-- “Listen now” block with platform links -->
+                    <div class="hero__listen-block">
+                        <div class="hero__listen-label">Listen now</div>
+                        <div class="hero__platforms">
+                            <!-- Each of these links opens the show on a different platform -->
+                            <a href="https://open.spotify.com/show/3nwEyCN9eUwP7QKneoYYiJ" target="_blank"
+                                rel="noopener noreferrer" class="hero__platform-link">Spotify</a>
+                            <span class="hero__platform-divider">·</span>
+                            <a href="https://podcasts.apple.com/podcast/id1849280234" target="_blank"
+                                rel="noopener noreferrer" class="hero__platform-link">Apple</a>
+                            <span class="hero__platform-divider">·</span>
+                            <a href="https://music.amazon.com/podcasts/ef54aaae-55f2-4541-96c4-b991efba0a9d"
+                                target="_blank" rel="noopener noreferrer" class="hero__platform-link">Amazon</a>
+                            <span class="hero__platform-divider">·</span>
+                            <a href="https://audioboom.com/channels/5035101.rss" target="_blank"
+                                rel="noopener noreferrer" class="hero__platform-link">RSS</a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Embedded Audioboom player (latest episode) -->
-                <div class="player-section">
-                    <iframe width="100%" height="95"
-                        src="https://embeds.audioboom.com/channels/5035101/embed?&image_option=hidden&link_color=351E1C&player_mode=latest_episode&player_theme=dark&v=202301"
-                        style="background-color: transparent; display: block; padding: 0; width: 100%; border-radius: 4px;"
-                        frameborder="0" allowtransparency="true" title="Right Quick Audioboom player" allow="autoplay"
-                        scrolling="no"
-                        sandbox="allow-downloads allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation">
-                    </iframe>
-                </div>
+                <!-- Right column: cover art, quick description, and embedded player -->
+                <div class="hero__media">
+                    <div class="episode-card">
+                        <div class="episode-card__body">
+                            <!-- Static cover artwork for the show -->
+                            <img src="./public/artwork.png" alt="Right Quick podcast cover art"
+                                class="episode-card__art">
 
-                <!-- Streaming platform label -->
-                <span class="listen-label">Listen On</span>
+                            <!-- Short blurb describing what the “Latest Episode” section is -->
+                            <div class="episode-card__copy">
+                                <span class="episode-card__badge">Latest Episode</span>
+                                <p class="episode-card__note">
+                                    A “right quick” conversation about random topics with
+                                    funny Black Queers..
+                                </p>
+                            </div>
+                        </div>
 
-                <!-- Streaming platform buttons -->
-                <div class="button-group">
-                    <a href="https://open.spotify.com/show/3nwEyCN9eUwP7QKneoYYiJ" target="_blank"
-                        rel="noopener noreferrer" class="btn-stream" aria-label="Listen on Spotify">
-                        <i class="fa-brands fa-spotify" aria-hidden="true"></i>
-                        <span>Spotify</span>
-                    </a>
-                    <a href="https://podcasts.apple.com/podcast/id1849280234" target="_blank" rel="noopener noreferrer"
-                        class="btn-stream" aria-label="Listen on Apple Podcasts">
-                        <i class="fa-brands fa-apple" aria-hidden="true"></i>
-                        <span>Apple</span>
-                    </a>
-                    <a href="https://music.amazon.com/podcasts/ef54aaae-55f2-4541-96c4-b991efba0a9d" target="_blank"
-                        rel="noopener noreferrer" class="btn-stream" aria-label="Listen on Amazon Music">
-                        <i class="fa-brands fa-amazon" aria-hidden="true"></i>
-                        <span>Amazon</span>
-                    </a>
-                    <a href="https://audioboom.com/channels/5035101.rss" target="_blank" rel="noopener noreferrer"
-                        class="btn-stream" aria-label="Subscribe via RSS Feed">
-                        <i class="fa-solid fa-rss" aria-hidden="true"></i>
-                        <span>RSS Feed</span>
-                    </a>
+                        <!-- Embedded Audioboom player set to always play the latest episode -->
+                        <div class="hero__player">
+                            <iframe width="100%" height="95"
+                                src="https://embeds.audioboom.com/channels/5035101/embed?&image_option=hidden&link_color=1DB954&player_mode=latest_episode&player_theme=dark&v=202301"
+                                style="background-color:transparent;display:block;padding:0;width:100%;" frameborder="0"
+                                allowtransparency="true" title="Right Quick Audioboom player" allow="autoplay"
+                                scrolling="no"
+                                sandbox="allow-downloads allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation">
+                            </iframe>
+                        </div>
+
+                        <!-- Support link that points people to Patreon -->
+                        <div class="hero__support">
+                            <a href="https://patreon.com/cw/theyagenda" target="_blank" rel="noopener noreferrer"
+                                class="hero__support-link">
+                                Support on Patreon <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ==========================================
-         CONTACT SECTION
-         ========================================== -->
-    <section id="contact" class="contact-section" aria-labelledby="contact-title">
-        <div class="contact-container">
-            <!-- Re-usable section header component -->
-            <header class="section-header">
-                <h3 class="section-heading" id="contact-title">
-                    <span>Send a <em>Message</em></span>
-                </h3>
-            </header>
+            <!-- Thin rule and metadata that anchor the hero to the grid visually -->
+            <div class="hero__bottom-rule" aria-hidden="true">
+                <div class="hero__bottom-inner">
+                    <span class="hero__bottom-label">Episode · Weekly</span>
+                    <span class="hero__bottom-label">Format · Short Form</span>
+                </div>
+            </div>
+        </section>
 
-            <div class="contact-grid">
-                <!-- Left column: contact blurb + email -->
-                <div class="contact-info">
-                    <p>
-                        Have feedback or story ideas? We're listening. Send them our way at
-                        <strong>rightquickpod@gmail.com</strong> or use this form. We read every message.
-                    </p>
+        <!-- ABOUT: quick explanation of what the show is and how it works -->
+        <section id="about" class="section section--about" aria-labelledby="about-heading">
+            <div class="section__inner">
+                <!-- Left column: section index label -->
+                <div class="section__label-col">
+                    <p class="section__num">01</p>
                 </div>
 
-                <!-- Right column: contact form (wired up by script.js / Web3Forms) -->
+                <!-- Right column: actual “About” content -->
+                <div class="section__body">
+                    <h2 class="section__heading" id="about-heading">About<br><em>the Show</em></h2>
+
+                    <div class="section__copy">
+                        <!-- Short line that sets the tone for the section -->
+                        <p class="section__lead">To Black Imagination and Beyond.</p>
+                        <!-- Brief description of the show format and perspective -->
+                        <p>
+                            Right Quick offers a
+                            Black, Queer take on pop
+                            culture, media, and
+                            current events “right
+                            quick”, in 15 minutes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PEOPLE: highlight the hosts and producer with short bios -->
+        <section id="hosts" class="section section--hosts" aria-labelledby="hosts-heading">
+            <div class="section__inner">
+                <div class="section__label-col">
+                    <p class="section__num">02</p>
+                </div>
+
+                <div class="section__body">
+                    <h2 class="section__heading" id="hosts-heading">The<br><em>People</em></h2>
+                    <p class="section__intro">
+                        Right Quick feels like listeners stepped
+                        into the middle of two friends having a
+                        weekly catch-up..
+                    </p>
+                </div>
+            </div>
+
+            <!-- Three-column grid of people involved with the show -->
+            <div class="hosts__grid">
+                <!-- Host 1 -->
+                <article class="host">
+                    <!-- Index number for this host card -->
+                    <p class="host__index">01</p>
+                    <div class="host__content">
+                        <!-- Role / job title -->
+                        <p class="host__role">Host & Executive Producer</p>
+                        <!-- Host name -->
+                        <h3 class="host__name">Nandi K.</h3>
+                        <!-- Short bio written in the show’s tone -->
+                        <p class="host__bio">
+                            Nandi Kayy is a Black, Southern Queer with a passion for all things Black culture, play and
+                            sound. A style and fried
+                            chicken enthusiast, Nandi brings knowledge. novelty, and comedy to the cast of Right Quick.
+                        </p>
+                        <!-- Link to the host’s Instagram profile -->
+                        <a href="https://instagram.com/nandikayyy" target="_blank" rel="noopener noreferrer"
+                            class="host__link">@nandikayyy</a>
+                    </div>
+                </article>
+
+                <!-- Host 2 -->
+                <article class="host">
+                    <p class="host__index">02</p>
+                    <div class="host__content">
+                        <p class="host__role">Co-Host & Producer</p>
+                        <h3 class="host__name">Vance Gowe</h3>
+                        <p class="host__bio">
+                            Vance Gowe is a(t least) bi-hyphenate chicken enthusiast and all-around silly goose. Lover
+                            of oxtails, gams, and
+                            jokey-jokes.
+                        </p>
+                        <a href="https://www.instagram.com/sir_lance_a_thawt/" target="_blank" rel="noopener noreferrer"
+                            class="host__link">@sir_lance_a_thawt</a>
+                    </div>
+                </article>
+
+                <!-- Producer -->
+                <article class="host">
+                    <p class="host__index">03</p>
+                    <div class="host__content">
+                        <p class="host__role">Audio Producer</p>
+                        <h3 class="host__name">Aaron Rand Freeman</h3>
+                        <p class="host__bio">
+                            Best known for his work with the award-winning media company 'This Week In Blackness" and
+                            creator of the Unreasonable
+                            Fridays podcast network, Aaron brings his passion, knowledge, and drive to help
+                            change-making media thrive.
+                        </p>
+                        <a href="https://www.instagram.com/randfreeman/" target="_blank" rel="noopener noreferrer"
+                            class="host__link">@randfreeman</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- LISTEN: direct links to the show on all major platforms -->
+        <section class="section section--listen" aria-labelledby="listen-heading">
+            <div class="section__inner">
+                <div class="section__label-col">
+                    <p class="section__num">03</p>
+                </div>
+
+                <div class="section__body section__body--listen">
+                    <h2 class="section__heading" id="listen-heading">Listen<br><em>Everywhere</em></h2>
+
+                    <!-- Navigation-style list of platform links -->
+                    <nav class="listen-links" aria-label="Podcast platforms">
+                        <a href="https://open.spotify.com/show/3nwEyCN9eUwP7QKneoYYiJ" target="_blank"
+                            rel="noopener noreferrer" class="listen-link">
+                            <span class="listen-link__name">Spotify</span>
+                            <span class="listen-link__arrow" aria-hidden="true">↗</span>
+                        </a>
+                        <a href="https://podcasts.apple.com/podcast/id1849280234" target="_blank"
+                            rel="noopener noreferrer" class="listen-link">
+                            <span class="listen-link__name">Apple Podcasts</span>
+                            <span class="listen-link__arrow" aria-hidden="true">↗</span>
+                        </a>
+                        <a href="https://music.amazon.com/podcasts/ef54aaae-55f2-4541-96c4-b991efba0a9d" target="_blank"
+                            rel="noopener noreferrer" class="listen-link">
+                            <span class="listen-link__name">Amazon Music</span>
+                            <span class="listen-link__arrow" aria-hidden="true">↗</span>
+                        </a>
+                        <a href="https://audioboom.com/channels/5035101.rss" target="_blank" rel="noopener noreferrer"
+                            class="listen-link">
+                            <span class="listen-link__name">RSS Feed</span>
+                            <span class="listen-link__arrow" aria-hidden="true">↗</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT: simple contact form wired to Web3Forms in script.js -->
+        <section id="contact" class="section section--contact" aria-labelledby="contact-heading">
+            <div class="section__inner">
+                <div class="section__label-col">
+                    <p class="section__num">04</p>
+                </div>
+
+                <div class="section__body">
+                    <h2 class="section__heading" id="contact-heading">Send a<br><em>Message</em></h2>
+                </div>
+            </div>
+
+            <div class="contact__grid">
+                <!-- Text block explaining how to reach the show -->
+                <div class="contact__info">
+                    <p>Have feedback, a story worth bringing into the room, or just something to say?</p>
+                    <p>Reach us directly at <strong>rightquickpod@gmail.com</strong> or use the form.</p>
+                </div>
+
+                <!-- Contact form that posts to Web3Forms (logic handled in script.js) -->
                 <form class="contact-form" id="contactForm" aria-label="Contact form">
+                    <!-- Name field -->
                     <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="Full name" required>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your full name" required>
                     </div>
 
+                    <!-- Email field -->
                     <div class="form-group">
-                        <label for="email">Your Email</label>
+                        <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="your@email.com" required>
                     </div>
 
+                    <!-- Message text area -->
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Tell us what's on your mind..."
+                        <textarea id="message" name="message" rows="5" placeholder="What's on your mind..."
                             required></textarea>
                     </div>
 
+                    <!-- Footer: captcha, submit button, and spot for success/error messages -->
                     <div class="form-footer">
-                        <!-- Web3Forms hCaptcha placeholder -->
+                        <!-- Web3Forms hCaptcha placeholder (rendered by their script) -->
                         <div class="h-captcha" data-captcha="true"></div>
-
-                        <!-- Submit button -->
                         <button type="submit" class="contact-btn">Send Message</button>
-
-                        <!-- Response message (success / error text) -->
+                        <!-- This div is filled with status text by script.js after submission -->
                         <div id="formMessage" class="form-message" role="alert"></div>
                     </div>
                 </form>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ==========================================
-         FOOTER
-         ========================================== -->
-    <footer role="contentinfo">
-        <div class="footer-inner">
-            <div class="footer-content">
-                <!-- Populated with current year by script.js -->
-                <div id="footer-copyright"></div>
+    </main>
 
-                <!-- Designer credit -->
-                <div>
-                    Designed &amp; Developed with 💜 by
-                    <a href="https://www.meshaestudios.com" target="_blank" rel="noopener noreferrer">
-                        Meshae Studios
-                    </a>
-                </div>
-            </div>
+    <!-- FOOTER: legal line + credit link -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="site-footer__inner">
+            <p id="footer-copyright" class="site-footer__meta"></p>
+            <p class="site-footer__meta">
+                Designed by
+                <a href="https://www.meshaestudios.com" target="_blank" rel="noopener noreferrer">Meshae Studios</a>
+            </p>
         </div>
     </footer>
 
-    <!-- Web3Forms script to render hCaptcha + handle submission -->
-    <script src="https://web3forms.com/client/script.js" async defer></script>
+    <!-- MOBILE NAV: fixed bottom navigation bar shown only on small screens -->
+    <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <!-- These mirror the main nav links but are optimized for thumbs at the bottom of the screen -->
+        <a class="mobile-nav__link" href="#about">About</a>
+        <a class="mobile-nav__link" href="#hosts">People</a>
+        <a class="mobile-nav__link" href="https://patreon.com/cw/theyagenda" target="_blank"
+            rel="noopener noreferrer">Patreon</a>
+        <a class="mobile-nav__link" href="#contact">Contact</a>
+    </nav>
 
-    <!-- Main site JS (handles contact form behavior, etc.) -->
+    <!-- Web3Forms script: handles captcha rendering and form submission behind the scenes -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+    <!-- Main site JavaScript: handles contact form submission + footer year -->
     <script src="script.js"></script>
 </body>
 
