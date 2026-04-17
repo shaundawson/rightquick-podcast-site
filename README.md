@@ -4,8 +4,7 @@ A minimal, modern landing page for the RightQuick podcast featuring:
 - 🎵 Audioboom player integration
 - 🔗 Links to Spotify, Apple Podcasts, and Google Podcasts
 - 💜 Patreon support link
-- 📧 Contact information
-- 🌓 Dark mode support
+- 📧 Contact Form
 
 ## Tech Stack
 - Vanilla HTML5
@@ -23,5 +22,4 @@ Hosted on AWS Amplify for zero-downtime updates.
 ## Files
 - `index.html` - Main page structure
 - `styles.css` - All styling
-- `script.js` - Player functionality
 - `artwork.jpg` - Podcast artwork (add your image here)
