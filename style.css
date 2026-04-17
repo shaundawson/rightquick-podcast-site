@@ -216,7 +216,7 @@ textarea {
     background:
         linear-gradient(180deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.58) 42%, rgba(0, 0, 0, 0.84) 100%),
         linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.46) 40%, rgba(0, 0, 0, 0.62) 100%),
-        url("./public/hero-bg.png") 76% 28% / 76% auto no-repeat;
+        url("./public/hero-bg.png") 82% 28% / 76% auto no-repeat;
     z-index: -1;
 }
 
@@ -837,7 +837,7 @@ textarea {
     .hero__text,
     .hero__media {
         grid-column: auto;
-        padding-top: var(--space-4);
+        padding-top: var(--space-10);
         padding-bottom: 0;
     }
 
@@ -890,13 +890,6 @@ textarea {
         row-gap: var(--space-6);
     }
 
-    .hero::before {
-        background:
-            linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.74) 38%, rgba(0, 0, 0, 0.52) 72%, rgba(0, 0, 0, 0.86) 100%),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.68) 100%),
-            url("./public/hero-bg.png") 82% 10% / 135% auto no-repeat;
-        opacity: 0.82;
-    }
 
 
     .hero__headline-line {
@@ -908,11 +901,12 @@ textarea {
     }
 
     .hero__descriptor {
-        max-width: 28ch;
+        max-width: 16ch;
     }
 
     .hero__eyebrow {
         margin-top: var(--space-10);
+        max-width: 16ch;
     }
 
     .section {
